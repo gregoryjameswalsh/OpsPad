@@ -54,7 +54,7 @@ describe('GET "/:id"', () => {
 
 describe('PUT "/:id"', () => {
     test('PUT "/:id" updates pet and returns it', async () => {
-        const res = (await requestWithSupertest.put('/pets/1')).send({
+        const res = await requestWithSupertest.put('/pets/1').send({
             id: 1,
             name: 'Rexo',
             type: 'dogo',

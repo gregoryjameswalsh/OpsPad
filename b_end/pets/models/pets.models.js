@@ -37,7 +37,7 @@ export const editItem = (id, data) => {
 
 export const addItem = data => {
     try {
-        const newPet = { id: db.pets.lenth + 1, ...data }
+        const newPet = { id: db.pets.length + 1, ...data }
         db.pets.push(newPet)
         return newPet
     } catch (err) {
@@ -52,7 +52,7 @@ export const deleteItem = id => {
         if (index === -1) throw new Error('Pet not found')
             else {
         db.pets.splice(index, 1)
-    return db.pets
+        return db.pets
             }
     } catch (error) {
     }
