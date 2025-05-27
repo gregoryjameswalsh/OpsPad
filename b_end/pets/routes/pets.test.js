@@ -82,7 +82,7 @@ describe('POST "/"', () => {
             breed: 'pinky'
         })
         expect(res.status).toEqual(200)
-        expect(res.type).toEqual;(expect.stringContaining('json'))
+        expect(res.type).toEqual(expect.stringContaining('json'))
         expect(res.body).toEqual({
             name: 'Salame',
             type: 'cat',
