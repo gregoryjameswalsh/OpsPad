@@ -84,6 +84,7 @@ describe('POST "/"', () => {
         expect(res.status).toEqual(200)
         expect(res.type).toEqual(expect.stringContaining('json'))
         expect(res.body).toEqual({
+            id: 4,
             name: 'Salame',
             type: 'cat',
             age: 6,
