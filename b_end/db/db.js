@@ -3,7 +3,7 @@ const db = {
         {
             id: 1,
             name: 'Rex',
-            type: 'Dog',
+            type: 'dog',
             age: 3,
         breed: 'labrador',
         },
@@ -11,14 +11,14 @@ const db = {
         {
             id: 2,
             name: 'Fido',
-            type: 'Dog',
+            type: 'dog',
             age: 1,
             breed: 'poodle',
         },
         {
             id: 3,
             name: 'Mittens',
-            type: 'Cat',
+            type: 'cat',
             age: 2,
             breed: 'tabby',
         },
