@@ -10,14 +10,14 @@ describe('GET "/"', () => {
         expect(res.type).toEqual(expect.stringContaining('json'))
         expect(res.body).toEqual([
             {
-                id:1,
+                id: 1,
                 name: 'Rex',
                 type: 'dog',
                 age: 3,
                 breed: 'labrador',
             },
             {
-                id:2, 
+                id: 2, 
                 name: 'Fido',
                 type: 'dog',
                 age: 1,
@@ -40,14 +40,15 @@ describe('GET "/:id"', () => {
         const res = await requestWithSupertest.get('/pets/1')
         expect(res.status).toEqual(200)
         expect(res.type).toEqual(expect.stringContaining('json'))
-        expect(res.body).toEqual([
+        expect(res.body).toEqual(
             {
                 id: 1,
                 name: 'Rex',
+                type: 'dog',
                 age: 3,
                 breed: 'labrador',
             }
-        ])
+        )
     })
 })
 

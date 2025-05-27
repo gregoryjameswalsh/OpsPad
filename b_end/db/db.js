@@ -5,7 +5,7 @@ const db = {
             name: 'Rex',
             type: 'dog',
             age: 3,
-        breed: 'labrador',
+            breed: 'labrador',
         },
     
         {
