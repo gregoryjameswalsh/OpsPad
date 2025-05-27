@@ -53,7 +53,7 @@ describe('GET "/:id"', () => {
 
 describe('PUT "/:id"', () => {
     test('PUT "/:id" updates pet and returns it', async () => {
-        const res = (await requestWithSupertest.put('/pets/1')).setEncoding({
+        const res = (await requestWithSupertest.put('/pets/1')).send({
             id: 1,
             name: 'Rexo',
             type: 'dogo',
@@ -74,7 +74,7 @@ describe('PUT "/:id"', () => {
 
 describe('POST "/"', () => {
     test('POST "/" adds new pet and returns the added item', async () => {
-        const res = (await requestWithSupertest.post('/pets')).setEncoding({
+        const res = (await requestWithSupertest.post('/pets')).send({
             name: 'Salame',
             type: 'cat',
             age: 6,
