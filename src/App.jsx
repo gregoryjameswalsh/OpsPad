@@ -1,4 +1,4 @@
-import { Suspense, lazy}  from 'react'
+import { Suspense, lazy, useState}  from 'react'
 import {BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
 import './App.css'
 
@@ -8,7 +8,7 @@ const EditPet = lazy(() => import ('./pages/EditPet'))
 const AddPet = lazy(() => import ('./pages/AddPet'))
 
 function App() {
-  const [petToEdit, setPetToEdit] = usesState(null)
+  const [petToEdit, setPetToEdit] = useState(null)
 
   return (
     <div className="App">
