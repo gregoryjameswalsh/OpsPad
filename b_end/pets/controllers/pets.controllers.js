@@ -33,7 +33,7 @@ export const editPet = (req, res) => {
 export const addPet = (req, res) => {
     try {
         const resp = addItem(req.body)
-        res.status(201).json(resp)
+        res.status(200).json(resp)
         
     } catch (err) {
         res.status(500).send(err)
