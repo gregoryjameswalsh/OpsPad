@@ -2,7 +2,7 @@ import { getItem, listItems, editItem, addItem, deleteItem } from '../../../b_en
 
 export const getPet = (req, res) => {
     try {
-        const resp = getItem(pareseInt(req.params.id))
+        const resp = getItem(parseInt(req.params.id))
         res.status(200).json(resp)
 
     }   catch (err) {
@@ -22,7 +22,7 @@ export const listPets = (req, res) => {
 
 export const editPet = (req, res) => {
     try {
-        const resp = addItem(req.body)
+        const resp = editItem(parseInt(req.params.id), req.body)
         res.status(200).json(resp)
 
     } catch (err) {
