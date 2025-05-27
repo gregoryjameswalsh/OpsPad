@@ -74,7 +74,7 @@ describe('PUT "/:id"', () => {
 
 describe('POST "/"', () => {
     test('POST "/" adds new pet and returns the added item', async () => {
-        const res = (await requestWithSupertest.post('/pets')).send({
+        const res = await requestWithSupertest.post('/pets').send({
             name: 'Salame',
             type: 'cat',
             age: 6,
