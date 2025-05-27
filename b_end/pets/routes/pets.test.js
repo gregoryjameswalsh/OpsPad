@@ -97,7 +97,7 @@ describe('DELETE "/:id"', () => {
     test('DELETE "/:id" deletes given pet and returns updated list', async () => {
         const res = await requestWithSupertest.delete('/pets/2')
         expect(res.status).toEqual(200)
-        expect(res.type).toEqual(expect.stringContaining('json)'))
+        expect(res.type).toEqual(expect.stringContaining('json'))
         expect(res.body).toEqual([
             {
                 id: 1,
