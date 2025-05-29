@@ -3,76 +3,63 @@ import {BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
 import './App.css'
 
 import Navbar from './components/Navbar'
+import Footer from './components/Footer'
 
-const PetList = lazy(() => import ('./pages/PetList'))
-const PetDetail = lazy(() => import ('./pages/PetDetail'))
-const EditPet = lazy(() => import ('./pages/EditPet'))
-const AddPet = lazy(() => import ('./pages/AddPet'))
+// const PetList = lazy(() => import ('./pages/PetList'))
+// const PetDetail = lazy(() => import ('./pages/PetDetail'))
+// const EditPet = lazy(() => import ('./pages/EditPet'))
+// const AddPet = lazy(() => import ('./pages/AddPet'))
+
+const LandingPage = lazy(() => import ('./pages/LandingPage'))
+const DashboardPage = lazy(() => import ('/pages/DashboardPage'))
+const ShiftNotesPage = lazy(() => import ('./pages/ShiftNotesPage'))
+const NewNotePage = lazy(() => import ('./pages/NewNotePage'))
+const TaskListPage = lazy(() => import ('./pages/TaskListPage'))
+const NotFoundPage = lazy(() => import ('./NotFoundPage'))
+
 
 function App() {
-  const [petToEdit, setPetToEdit] = useState(null)
+  
+  // *** commented out for now while OpsPad framework built - will need to refactor in at a later date but related to appropriate dbs ***
+  // const [petToEdit, setPetToEdit] = useState(null) 
 
   return (
     <div>
-    <div>
-      <Navbar />
-    </div>
-    <div className="App">
-      <Router>
-        <h1>Pet shelter</h1>
 
-        <Link to='/add'>
-        <button>Add new pet</button>
-        </Link>
+      <div>
+        <Navbar />
+      </div>
 
+      <div className="App">
+        <Router>
         <Routes>
-          <Route path='/' element={<Suspense fallback={<></>}><PetList /></Suspense>} />
-
-          <Route path='/:petId' element={<Suspense fallback={<></>}><PetDetail setPetToEdit={setPetToEdit} /></Suspense>} />
-
-          <Route path='/:petId/edit' element={<Suspense fallback={<></>}><EditPet petToEdit={petToEdit} /></Suspense>} />
-          
-          <Route path='/add' element={<Suspense fallback={<></>}><AddPet /></Suspense>} />
+          <Route path='/'          element={<Suspense fallback={<></>}><LandingPage /></Suspense>} />
+          <Route path='/dashboard' element={<Suspense fallback={<></>}><DashboardPage /></Suspense>} />
+          <Route path='/notes'     element={<Suspense fallback={<></>}><ShiftNotesPage /></Suspense>} />
+          <Route path='/notes/new' element={<Suspense fallback={<></>}><NewNotePage /></Suspense>} />
+          <Route path='/tasks'     element={<Suspense fallback={<></>}><TaskListPage /></Suspense>} />
+          <Route path='*'          element={<Suspense fallback={<></>}><NotFoundPage /></Suspense>} />
         </Routes>
+        </Router>
+      </div>
 
-      </Router>
-    </div>
+      <div>
+        <Footer />
+      </div>
+
     </div>
   )
 }
 
 export default App
 
-//import reactLogo from './assets/react.svg'
-//import viteLogo from '/vite.svg'
-//
-//function App() {
-//  const [count, setCount] = useState(0)
-//
-//  return (
-//    <>
-//      <div>
-//        <a href="https://vite.dev" target="_blank">
-//          <img src={viteLogo} className="logo" alt="Vite logo" />
-//        </a>
-//        <a href="https://react.dev" target="_blank">
-//          <img src={reactLogo} className="logo react" alt="React logo" />
-//        </a>
-//      </div>
-//      <h1>Vite + React</h1>
-//      <div className="card">
-//        <button onClick={() => setCount((count) => count + 1)}>
-//          count is {count}
-//        </button>
-//        <p>
-//          Edit <code>src/App.jsx</code> and save to test HMR
-//        </p>
-//      </div>
-//      <p className="read-the-docs">
-//        Click on the Vite and React logos to learn more
-//      </p>
-//    </>
-//  )
-//}
-//
-//export default App
+/*   
+
+*** Previous Routes commented out as I build out the OpsPad framework - left for reference for the meantime!
+
+          <Route path='/' element={<Suspense fallback={<></>}><PetList /></Suspense>} />
+          <Route path='/:petId' element={<Suspense fallback={<></>}><PetDetail setPetToEdit={setPetToEdit} /></Suspense>} />
+          <Route path='/:petId/edit' element={<Suspense fallback={<></>}><EditPet petToEdit={petToEdit} /></Suspense>} />
+          <Route path='/add' element={<Suspense fallback={<></>}><AddPet /></Suspense>} />
+
+*/
