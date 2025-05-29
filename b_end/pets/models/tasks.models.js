@@ -1,6 +1,6 @@
 import tasks_db from '../../db/tasks_db.js'
 
-export const getTask = id => {
+export const getItem = id => {
     try{
         const task=tasks_db?.tasks?.filter( tasks => task?.id === id) [0]
         return task
@@ -10,7 +10,7 @@ export const getTask = id => {
     }
 }
 
-export const listTasks = () => {
+export const listItems = () => {
     try {
         return tasks_db?.tasks
 
@@ -19,7 +19,7 @@ export const listTasks = () => {
     }
 }
 
-export const editTask = (id, data) => {
+export const editItem = (id, data) => {
     try {
         const index = tasks_db.tasks.findIndex(task => task.id === id)
 
@@ -35,7 +35,7 @@ export const editTask = (id, data) => {
     }
 
 
-export const addTask = data => {
+export const addItem = data => {
     try {
         const newTask = { id: tasks_db.tasks.length + 1, ...data }
         tasks_db.tasks.push(newTask)
@@ -45,7 +45,7 @@ export const addTask = data => {
     }
 }
 
-export const deleteTask = id => {
+export const deleteItem = id => {
     try {
         // delete task from db
         const index = tasks_db.tasks.findIndex(task => task.id === id)

@@ -1,8 +1,8 @@
-import { getTask, listTasks, editTask, addTask, deleteTask } from '../../../b_end/pets/models/tasks.models.js';
+import { getItem, listItems, editItem, addItem, deleteItem } from '../../../b_end/pets/models/tasks.models.js';
 
 export const getTask = (req, res) => {
     try {
-        const resp = getTask(parseInt(req.params.id))
+        const resp = getItem(parseInt(req.params.id))
         res.status(200).json(resp)
 
     }   catch (err) {
@@ -12,7 +12,7 @@ export const getTask = (req, res) => {
 
 export const listTasks = (req, res) => {
     try {
-        const resp = listTasks()
+        const resp = listItems()
         res.status(200).json(resp)
 
     } catch (err) {
@@ -22,7 +22,7 @@ export const listTasks = (req, res) => {
 
 export const editTask = (req, res) => {
     try {
-        const resp = editTask(parseInt(req.params.id), req.body)
+        const resp = editItem(parseInt(req.params.id), req.body)
         res.status(200).json(resp)
 
     } catch (err) {
@@ -32,7 +32,7 @@ export const editTask = (req, res) => {
 
 export const addTask = (req, res) => {
     try {
-        const resp = addTask(req.body)
+        const resp = addItem(req.body)
         res.status(200).json(resp)
         
     } catch (err) {
@@ -42,7 +42,7 @@ export const addTask = (req, res) => {
 
 export const deleteTask = (req, res) => {
     try {
-        const resp = deleteTask(parseInt(req.params.id))
+        const resp = deleteItem(parseInt(req.params.id))
         res.status(200).json(resp)
 
     } catch (err) {
