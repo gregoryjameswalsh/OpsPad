@@ -1,13 +1,28 @@
-import Card from '../UI/Card';
-import { useState, useEffect } from 'react';
+import Card from '../UI/Card'
+import { useState, useEffect } from 'react'
+import axios from 'axios'
+import '../../App.css' // Ensure you have the correct path to your CSS file
 
 export default function TaskChecklistCard({ className = '' }) {
-  const [tasks, setTasks] = useState(/* fetch or prop */ [
-    { id: 't1', text: 'Clean restrooms', completed: true },
-    /* ... */
-  ]);
+  const [tasks, setTasks] = useState([]);
 
-  function toggle(id) {
+    const getTasks = async () => {
+        try {
+            /* AXIOS */
+            const response = await axios.get(`http://localhost:3000/tasks`)
+            if (response.status === 200) setTasks(response.data)
+
+        } catch (error) {
+            console.error('error', error)
+        }
+    }
+
+    useEffect(() => { getTasks() }, [])
+
+  // Toggle task completion
+  // This function updates the task's completion status
+  // and should also persist the change to the API.
+      function toggle(id) {
     setTasks(ts => ts.map(t =>
       t.id === id ? { ...t, completed: !t.completed } : t
     ));
@@ -15,7 +30,7 @@ export default function TaskChecklistCard({ className = '' }) {
   }
 
   return (
-    <Card title="Task Checklist" className={className}>
+    <Card title="Task Checklist" className={`task-checklist-card ${className}`}>
       <ul className="space-y-2">
         {tasks.map(t => (
           <li key={t.id} className="flex items-center">
@@ -25,7 +40,7 @@ export default function TaskChecklistCard({ className = '' }) {
               onChange={() => toggle(t.id)}
               className="mr-3"
             />
-            <span className={t.completed ? 'line-through text-gray-500' : ''}>
+            <span className={t.completed ? 'completed' : ''}>
               {t.text}
             </span>
           </li>

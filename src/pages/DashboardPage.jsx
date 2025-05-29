@@ -4,12 +4,15 @@ import OpenIssuesCard from '../components/Dashboard/OpenIssuesCard';
 import TaskChecklistCard from '../components/Dashboard/TaskChecklistCard';
 import DashboardFooter from '../components/Dashboard/DashboardFooter';
 
+import '../App.css'; // Import global styles
+
 export default function DashboardPage() {
   return (
-    <div className="p-6 space-y-6">
+    <div className="dashboard-page">
       <DashboardHeader />
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      {/* Main content area with grid layout for cards */}
+      <div className="dashboard-grid">
         <ShiftNotesCard className="lg:col-span-1" />
         <OpenIssuesCard className="lg:col-span-1" />
         <TaskChecklistCard className="lg:col-span-1" />
