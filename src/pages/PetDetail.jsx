@@ -15,7 +15,7 @@ function PetDetail({ setPetToEdit }) {
 
 
             /* AXIOS */
-            const response = await axios.get('http://localhost:3000/pets/${petId}')
+            const response = await axios.get(`http://localhost:3000/pets/${petId}`)
             if (response.status === 200) {
                 setPet (response.data)
                 setPetToEdit (response.data)
@@ -32,9 +32,9 @@ function PetDetail({ setPetToEdit }) {
 
 
             /* AXIOS */
-            const response = await axios.delete('http://localhost:3000/pets/${petId}')
+            const response = await axios.delete(`http://localhost:3000/pets/${petId}`)
             
-            if (response.status === 200) window.location.href= '/'
+            if (response.status === 200) window.location.href= `/` // Redirect to the home page after deletion
         } catch (error) {
             console.error('error', error)
         }
@@ -54,7 +54,7 @@ function PetDetail({ setPetToEdit }) {
                 
                 <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                    
-                   <Link to={'/${pet?.id}/edit' }>
+                   <Link to={`/${pet?.id}/edit` }>
                    <button style={{ marginRight: 10 }}>Edit pet</button>
                    </Link>
                    

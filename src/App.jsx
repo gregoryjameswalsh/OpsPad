@@ -2,6 +2,8 @@ import { Suspense, lazy, useState}  from 'react'
 import {BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
 import './App.css'
 
+import Navbar from './components/Navbar'
+
 const PetList = lazy(() => import ('./pages/PetList'))
 const PetDetail = lazy(() => import ('./pages/PetDetail'))
 const EditPet = lazy(() => import ('./pages/EditPet'))
@@ -11,6 +13,10 @@ function App() {
   const [petToEdit, setPetToEdit] = useState(null)
 
   return (
+    <div>
+    <div>
+      <Navbar />
+    </div>
     <div className="App">
       <Router>
         <h1>Pet shelter</h1>
@@ -30,6 +36,7 @@ function App() {
         </Routes>
 
       </Router>
+    </div>
     </div>
   )
 }

@@ -19,11 +19,11 @@ function AddPet() {
 
             /* AXIOS */
             const response = await axios.post(
-                'http://localhost:3000/pets/',
+                `http://localhost:3000/pets/`,
                 petData,
                 { headers: { 'Content-Type': 'application/json' } }
             )
-                if (response.status === 201) window.location.href = '/${response.data.id}' // Redirect to the new pet detail page
+                if (response.status === 200) window.location.href = `/${response.data.id}` // Redirect to the new pet detail page
         
         } catch (error) {
             console.error('error', error)

@@ -13,7 +13,7 @@ function PetList() {
             // if (response.status === 200) setPets(data)
 
             /* AXIOS */
-            const response = await axios.get('http://localhost:3000/pets')
+            const response = await axios.get(`http://localhost:3000/pets`)
             if (response.status === 200) setPets(response.data)
 
         } catch (error) {
@@ -32,7 +32,7 @@ function PetList() {
                 <div key={pet?.id}>
                     <p>{pet?.name} - {pet?.type} - {pet?.breed}</p>
 
-                    <Link to={' /${pet?.id}'}>
+                    <Link to={`/${pet?.id}`}>
                     <button>Pet detail</button></Link>
                 </div>
             )
