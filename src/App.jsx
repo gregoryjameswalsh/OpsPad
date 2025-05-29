@@ -11,11 +11,11 @@ import Footer from './components/Footer'
 // const AddPet = lazy(() => import ('./pages/AddPet'))
 
 const LandingPage = lazy(() => import ('./pages/LandingPage'))
-const DashboardPage = lazy(() => import ('/pages/DashboardPage'))
+const DashboardPage = lazy(() => import ('./pages/DashboardPage'))
 const ShiftNotesPage = lazy(() => import ('./pages/ShiftNotesPage'))
 const NewNotePage = lazy(() => import ('./pages/NewNotePage'))
 const TaskListPage = lazy(() => import ('./pages/TaskListPage'))
-const NotFoundPage = lazy(() => import ('./NotFoundPage'))
+const NotFoundPage = lazy(() => import ('./pages/NotFoundPage'))
 
 
 function App() {
