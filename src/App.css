@@ -77,7 +77,7 @@ body {
   padding: var(--space);
 }
 
-/* 5.Breakpoint for Desktop */
+/* 5.Breakpoint for different screns */
 /*   Bump container width at a desktop size */
 @media (min-width: 1024px) {
   #root {
@@ -93,6 +93,16 @@ body {
   .features {
     grid-template-columns: repeat(2, minmax(0, 400px));
     justify-content: center;    
+  }
+}
+
+/*  Pull in size for mobile */
+@media (max-width: 768px) {
+  .features {
+    grid-template-columns: 1fr;
+  }
+  .hero h1 {
+    font-size: 2rem;
   }
 }
 
