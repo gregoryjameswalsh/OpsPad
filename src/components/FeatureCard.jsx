@@ -1,8 +1,10 @@
+import '../App.css'
+
 export default function FeatureCard({ icon, title, children}) {
     return (
-        <div>
-            <div>{icon}</div>
-            <div>{title}</div>
+        <div class="card">
+            <div class="icon">{icon}</div>
+            <h3>{title}</h3>
             <p>{children}</p>
         </div>
     )

@@ -10,7 +10,7 @@
 /* 2. CSS for colour scheme, typography, and layout */
 :root {
   /* palette */
---clr-beige: #eaf0ce;
+--clr-beige: #f0e6df;
 --clr-silver: #c0c5c1;
 --clr-slate-gray: #7d8491;
 --clr-english-violet: #574b60;
@@ -40,9 +40,12 @@
   --font-size-base: 16px;
 
   /* spacing unit */
+  --gap: 1.5rem;
   --space: 1.5rem;
   --radius: 1.5rem;
   --radius-lg: 1.5rem;
+
+  --nav-height: 4rem;
 }
 
 /* 3. Base HTML & Body */
@@ -56,6 +59,7 @@ body {
   color: var(--color-text-primary);
   background-color: var(--clr-bg-light);
   line-height: 1.6;
+  padding-top: var(--nav-height);
 }
 
 /* 4. #root as a Centered, Responsive Container */
@@ -79,28 +83,42 @@ body {
   #root {
     max-width: 1024px; /* Desktop */
   }
+
+  .hero {
+    padding: 6rem var(--gap);
+  }
+  .hero h1 {
+    font-size: 3.5rem;
+  }
+  .features {
+    grid-template-columns: repeat(2, minmax(0, 400px));
+    justify-content: center;    
+  }
 }
 
 /* 6. Utility Helpers */
 
 
-/* Navigation Bar */
-
+/*  __Navigation Bar__    */
 .navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: var(--nav-height);
+  z-index: 1000;
   display: flex;
   justify-content: space-between;
   align-items: center;
   background-color: var(--clr-bg-muted);
-  padding: var(--gap);
+  padding: 0 var(--gap);
 }
-
 .navbar .logo {
   font-size: 1.5rem;
   font-weight: bold;
   color: var(--clr-heading);
   text-decoration: none;
 }
-
 .nav-links a {
   margin-left: var(--gap);
   text-decoration: none;
@@ -108,7 +126,6 @@ body {
 }
 
 /* Hero Section */
-
 .hero {
   text-align: center;
   padding: calc(var(--gap) * 2) var(--gap);
@@ -128,6 +145,40 @@ body {
   margin-bottom: var(--gap);
   color: var(--clr-text-secondary);
 }
+
+/* Feature Section */
+.features {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--gap);
+  padding: var(--gap);
+  background-color: var(--clr-bg-muted);
+}
+.card {
+  background-color: white;
+  border-radius: var(--radius);
+  padding: var(--gap);
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+.card .icon {
+  background-color: red;
+  width: 3rem;
+  height: 3rem;
+  margin-bottom: var(--gap);
+  fill: var(--clr-primary);
+}
+.card h3 {
+  font-size: 1.125rem;
+  color: var(--clr-text-primary);
+  margin-bottom: 0.5rem;
+}
+.card p {
+  color: var(--clr-text-secondary);
+  font-size: 0.95rem;;
+}
+
+
 
 /* Buttons */
 .btn-primary {
@@ -156,16 +207,9 @@ body {
 
 
 
-.card {
-  background-color: #fff;
-  border-radius: 8px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-  padding: 24px;
-}
 
-.read-the-docs {
-  color: #888;
-}
+
+
 
 /* Container & spacing */
 .dashboard-page {

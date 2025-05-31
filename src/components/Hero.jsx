@@ -1,10 +1,12 @@
+import "../App.css"
+
 export default function Hero() {
     return (
-        <section class="hero">
+        <section className="hero">
             <h1>OpsPad</h1>
-            <p class="tagline"> Your Daily Ops Companion</p>
-            <p class="subtag">Simplify shift handovers &amp; task tracking</p>
-            <a href="#" class="btn-primary">
+            <p className="tagline"> Your Daily Ops Companion</p>
+            <p className="subtag">Simplify shift handovers &amp; task tracking</p>
+            <a href="#" className="btn-primary">
                 Get Started Free</a>
         </section>
     )

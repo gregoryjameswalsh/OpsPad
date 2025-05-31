@@ -6,7 +6,7 @@ export default function LandingPage() {
     return (
         <div>
             <Hero />
-            <div>
+            <div class="features">
                 <FeatureCard icon={<FiBook />} title="Shift Handover Notes">
                     Record important information for next Shift
                 </FeatureCard>
