@@ -1,11 +1,11 @@
 export default function Hero() {
     return (
-        <div className="hero">
+        <section class="hero">
             <h1>OpsPad</h1>
-            <p>Your Daily Ops Companion</p>
-            <button>
-                Get Started Free
-            </button>
-        </div>
+            <p class="tagline"> Your Daily Ops Companion</p>
+            <p class="subtag">Simplify shift handovers &amp; task tracking</p>
+            <a href="#" class="btn-primary">
+                Get Started Free</a>
+        </section>
     )
 }

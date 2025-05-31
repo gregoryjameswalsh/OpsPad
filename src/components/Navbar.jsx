@@ -1,24 +1,24 @@
 import React from 'react'
-import './navbar.css'
+import '../App.css'
 
 const Navbar = () => {
     return (
         <nav className="navbar">
-            <div className="navbar-left">
+            <div className="logo">
                 <p>OpsPad</p>
             </div>
 
             <div className="navbar-center">
-                <ul className="nav-links">
+                <div className="nav-links">
                     <li>Product</li>
                     <li>About Us</li>
                     <li>Contact</li>
-                </ul>
+                </div>
             </div>
 
-            <div className="navbar-right">
-                <p>Login</p>
-                <p>Sign Up</p>
+            <div className="nav-links">
+                <a href="#">Login</a>
+                <a href="#">Sign Up</a>
             </div>
         </nav>
     )

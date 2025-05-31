@@ -10,7 +10,22 @@
 /* 2. CSS for colour scheme, typography, and layout */
 :root {
   /* palette */
-  --color-primary: #4caf50;
+--clr-beige: #eaf0ce;
+--clr-silver: #c0c5c1;
+--clr-slate-gray: #7d8491;
+--clr-english-violet: #574b60;
+--clr-english-violet-dark: #3f334d;
+
+--clr-bg-light: var(--clr-beige);
+--clr-bg-muted: var(--clr-silver);
+--clr-text-primary: var(--clr-english-violet-dark);
+--clr-text-secondary: var(--clr-slate-gray);
+--clr-heading: var(--clr-slate-gray);
+--clr-primary: var(--clr-english-violet);
+--clr-accent: var(--clr-english-violet-dark);
+
+
+  --color-primary: #574b60;
   --color-secondary: #2e7d32;
   --color-bg: #f5f5f5;
   --color-surface: #ffffff;
@@ -25,7 +40,9 @@
   --font-size-base: 16px;
 
   /* spacing unit */
-  --space: 1rem;
+  --space: 1.5rem;
+  --radius: 1.5rem;
+  --radius-lg: 1.5rem;
 }
 
 /* 3. Base HTML & Body */
@@ -36,10 +53,9 @@ html {
 
 body {
   font-family: var(--font-family);
-  line-height: 1.5;
-  color: var(--color-text);
-  background-color: var(--color-bg);
-  height: 100%;
+  color: var(--color-text-primary);
+  background-color: var(--clr-bg-light);
+  line-height: 1.6;
 }
 
 /* 4. #root as a Centered, Responsive Container */
@@ -66,6 +82,66 @@ body {
 }
 
 /* 6. Utility Helpers */
+
+
+/* Navigation Bar */
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--clr-bg-muted);
+  padding: var(--gap);
+}
+
+.navbar .logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--clr-heading);
+  text-decoration: none;
+}
+
+.nav-links a {
+  margin-left: var(--gap);
+  text-decoration: none;
+  color: var(--clr-heading);
+}
+
+/* Hero Section */
+
+.hero {
+  text-align: center;
+  padding: calc(var(--gap) * 2) var(--gap);
+  background-color: var(--clr-bg-light);
+}
+.hero h1 {
+  font-size: 2.5rem;
+  color: var(--clr-heading);
+  margin-bottom: 0.5rem;
+}
+.hero .tagline {
+  font-size: 1.25rem;
+  margin-bottom: 0.25rem;
+  color: var(--clr-text-heading);
+}
+.hero .subtag {
+  margin-bottom: var(--gap);
+  color: var(--clr-text-secondary);
+}
+
+/* Buttons */
+.btn-primary {
+  display: inline-block;
+  background-color: var(--clr-primary);
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--radius);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+
+
 /*    Full-width section wrapper */
 
 .container {
