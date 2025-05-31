@@ -1,0 +1,11 @@
+import "../App.css"
+
+export default function OpenTheDayPage() {
+  return (
+  <div className="card">
+    <p className="text-center py-20">Open The Day Page - holding</p>
+    <a href="/DashboardPage" className="btn-primary">Click to acknowledge handover notes</a>
+    
+    </div>
+  )
+}
