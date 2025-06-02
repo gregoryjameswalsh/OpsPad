@@ -6,8 +6,8 @@ import './App.css'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 
-import LandingLayout from './LandingLayout';
-import AppLayout from './AppLayout';
+import LandingLayout from './Pages/LandingLayout';
+import AppLayout from './Pages/AppLayout';
 
 
 
