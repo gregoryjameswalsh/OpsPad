@@ -1,8 +1,10 @@
 import { Outlet } from 'react-router-dom';
 
+import "../App.css"
+
 export default function AppLayout() {
   return (
-    <div className="h-screen flex flex-col">
+    <div className="app.layout">
       <div className="flex-1 overflow-y-auto">
         <Outlet />
       </div>

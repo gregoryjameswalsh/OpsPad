@@ -60,6 +60,17 @@ body {
   line-height: 1.6;
   padding-top: var(--nav-height);
 }
+/* Layouts */
+.landing-layout {
+  display:grid;
+}
+.app-layout {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  grid-template-rows: 1fr 60px;
+}
+
+
 
 /* 4. #root as a Centered, Responsive Container */
 /*    - iPad-first width: 768px max
