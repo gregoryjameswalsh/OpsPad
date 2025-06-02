@@ -1,9 +1,15 @@
 import { Suspense, lazy, useState}  from 'react'
 import {BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
+
 import './App.css'
 
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
+
+import LandingLayout from './LandingLayout';
+import AppLayout from './AppLayout';
+
+
 
 // const PetList = lazy(() => import ('./pages/PetList'))
 // const PetDetail = lazy(() => import ('./pages/PetDetail'))
@@ -24,6 +30,8 @@ function App() {
   // *** commented out for now while OpsPad framework built - will need to refactor in at a later date but related to appropriate dbs ***
   // const [petToEdit, setPetToEdit] = useState(null) 
 
+
+  // temp added 'landing' to core route for testing layouts
   return (
     <div>
 
@@ -31,16 +39,28 @@ function App() {
         <Navbar />
       </div>
 
+
       <div className="App">
         <Router>
         <Routes>
-          <Route path='/'          element={<Suspense fallback={<></>}><LandingPage /></Suspense>} />
+          {/* Landing Page Layout */}
+          <Route element={<LandingLayout />}>
+            <Route path="/" element={<LandingPage />} />
+          </Route>
+
+          {/* In-App Layout with Bottom Nav */}
+          <Route element={<AppLayout />}>
+
+
+          <Route path='/landing'          element={<Suspense fallback={<></>}><LandingPage /></Suspense>} />
           <Route path='/dashboard' element={<Suspense fallback={<></>}><DashboardPage /></Suspense>} />
           <Route path='/openday'   element={<Suspense fallback={<></>}><OpenTheDayPage /></Suspense>} />
           <Route path='/notes'     element={<Suspense fallback={<></>}><ShiftNotesPage /></Suspense>} />
           <Route path='/notes/new' element={<Suspense fallback={<></>}><NewNotePage /></Suspense>} />
           <Route path='/tasks'     element={<Suspense fallback={<></>}><TaskListPage /></Suspense>} />
           <Route path='*'          element={<Suspense fallback={<></>}><NotFoundPage /></Suspense>} />
+
+          </Route>
         </Routes>
         </Router>
       </div>
