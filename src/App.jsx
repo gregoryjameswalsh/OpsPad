@@ -3,18 +3,9 @@ import {BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
 
 import './App.css'
 
-import Navbar from './components/Navbar'
-import Footer from './components/Footer'
+import LandingLayout from './components/layouts/LandingLayout'
+import AppLayout from './components/layouts/AppLayout';
 
-import LandingLayout from './Pages/LandingLayout';
-import AppLayout from './Pages/AppLayout';
-
-
-
-// const PetList = lazy(() => import ('./pages/PetList'))
-// const PetDetail = lazy(() => import ('./pages/PetDetail'))
-// const EditPet = lazy(() => import ('./pages/EditPet'))
-// const AddPet = lazy(() => import ('./pages/AddPet'))
 
 const LandingPage = lazy(() => import ('./pages/LandingPage'))
 const OpenTheDayPage = lazy(() => import ('./pages/OpenTheDayPage'))
@@ -40,13 +31,11 @@ function App() {
         <Routes>
           {/* Landing Page Layout */}
           <Route element={<LandingLayout />}>
-            <Route path="/" element={<LandingPage />} />
+          <Route path="/" element={<LandingPage />} />
           </Route>
 
           {/* In-App Layout with Bottom Nav */}
           <Route element={<AppLayout />}>
-
-
           <Route path='/landing'          element={<Suspense fallback={<></>}><LandingPage /></Suspense>} />
           <Route path='/dashboard' element={<Suspense fallback={<></>}><DashboardPage /></Suspense>} />
           <Route path='/openday'   element={<Suspense fallback={<></>}><OpenTheDayPage /></Suspense>} />
@@ -59,11 +48,6 @@ function App() {
         </Routes>
         </Router>
       </div>
-
-      <div>
-        <Footer />
-      </div>
-
     </div>
   )
 }
