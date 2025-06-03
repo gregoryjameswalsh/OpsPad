@@ -35,11 +35,6 @@ function App() {
   return (
     <div>
 
-      <div>
-        <Navbar />
-      </div>
-
-
       <div className="App">
         <Router>
         <Routes>

@@ -42,6 +42,7 @@
   /* spacing unit */
   --gap: 1.5rem;
   --space: 1.5rem;
+  --space-sml: 0.75rem;
   --radius: 1.5rem;
   --radius-lg: 1.5rem;
 
@@ -56,7 +57,7 @@ html {
 body {
   font-family: var(--font-family);
   color: var(--color-text-primary);
-  background-color: var(--clr-bg-light);
+  background-color: white;
   line-height: 1.6;
   padding-top: var(--nav-height);
 }
@@ -66,8 +67,11 @@ body {
 }
 .app-layout {
   display: grid;
-  grid-template-columns: 1fr 300px;
-  grid-template-rows: 1fr 60px;
+
+  border-color: #2e7d32;
+}
+.app-layout h1 {
+  font-size: 3rem;
 }
 
 
@@ -84,6 +88,7 @@ body {
   max-width: 768px; /* iPad-first */
   margin: 0 auto;
   padding: var(--space);
+ 
 }
 
 /* 5.Breakpoint for different screens*/
@@ -196,6 +201,35 @@ body {
   font-size: 0.95rem;;
 }
 
+/* App Header that sits there across the top of the app */
+.app-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: var(--nav-height);
+  z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+  padding: 0 var(--gap);
+}
+
+.app-header .logo {
+  font-size: 2rem;
+  font-weight: bold;
+  color: var(black);
+  text-decoration: none;
+}
+.app-header .site-name {
+  font-size: 1rem;
+  color: var(--clr-text-primary);
+  font-weight: bold;
+  align-self: left;
+}
+
+
 
 
 /* Buttons */
@@ -207,8 +241,12 @@ body {
   border-radius: var(--radius);
   text-decoration: none;
   font-weight: 600;
+  
 }
 
+.btn-primary:hover {
+  background-color: var(--clr-english-violet-dark);
+}
 
 
 /*    Full-width section wrapper */
@@ -231,11 +269,11 @@ body {
 
 /* Container & spacing */
 .dashboard-page {
-  padding: 24px;
+  /*padding: 24px; */
   display: flex;
   flex-direction: column;
   gap: 24px;
-  background-color: #b0bc9a;
+  background-color: white;;
 }
 
 /* Grid for the three dashboard cards */

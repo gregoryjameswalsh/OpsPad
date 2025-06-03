@@ -1,16 +1,23 @@
 import { Outlet } from 'react-router-dom';
+import AppHeader from '../components/AppHeader'; // Importing the AppHeader component
 
 import "../App.css"
 
 export default function AppLayout() {
   return (
-    <div className="app.layout">
-      <div className="flex-1 overflow-y-auto">
+    <div className="app-layout">
+
+      <AppHeader /> {/* Strip across the top of the app that stays no matter what page you're on */}
+
+      <div>
         <Outlet />
       </div>
-      <nav className="bg-white border-t p-4 text-center text-sm text-gray-600">
+      <p>2</p>
+      
+      <nav>
         <span>🏠 Dashboard | 📋 Tasks | 👤 Me</span>
       </nav>
+      <p>3</p>
     </div>
   );
 }
