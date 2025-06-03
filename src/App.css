@@ -252,6 +252,10 @@ body {
   font-weight: bold;
   align-self: left;
 }
+.app-header .icons {
+  font-size: 2.5rem;
+  color: var(--color-primary);
+}
 
 .app-footer {
   position: fixed;
@@ -261,10 +265,36 @@ body {
   height: var(--nav-height);
   z-index: 1000;
   display: flex;
-  justify-content: center;
+  justify-content: left;
   align-items: center;
-  background-color: var(--clr-bg-muted);
+  background-color: white;
   padding: 0 var(--gap);
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: lightgray;
+}
+.app-footer .icons {
+  font-size: 1rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  width: fit-content;
+  
+  color: var(--color-primary);
+}
+.app-footer .footer-icons {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: yellow; 
+ 
+}
+.col {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-self: flex-start;
+  
 }
 
 
@@ -273,7 +303,7 @@ body {
 /* Buttons */
 .btn-primary {
   display: inline-block;
-  background-color: var(--clr-primary);
+  background-color: var(--color-primary);
   color: white;
   padding: 0.75rem 1.5rem;
   border-radius: var(--radius);
@@ -314,7 +344,7 @@ body {
 .container {
   display: flex;
   width: 100%;
-  align-items: stretch;
+  
 }
 
 

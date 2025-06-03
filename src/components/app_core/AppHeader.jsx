@@ -16,7 +16,7 @@ const AppHeader = () => {
             <div className="app-header-right">
                 <a href="#">Weather Icon</a>
                 
-                <i class="fa-solid fa-circle-user logo primary"></i>
+                <i class="fa-solid fa-circle-user icons"></i>
             </div>
 
         </nav>

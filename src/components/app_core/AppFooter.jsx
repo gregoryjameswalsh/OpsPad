@@ -4,15 +4,28 @@ import '../../App.css'
 const AppFooter = () => {
     return (
         <nav className="app-footer">
-            <div className="logo">
-                <p>Today</p>
-                <p>Tasks</p>
-                <p>Handover</p>
+            <div className="container footer-icons">
+
+                <div className="container col">
+                    <i class="fa-solid fa-calendar-day"></i>
+                    <p>Today</p>
+                </div>
+
+                <div className="container col">
+                    <i class="fa-solid fa-list-check"></i>
+                    <p>Tasks</p>
+                </div>
+
+                <div className="container col">
+                    <i class="fa-solid fa-handshake"></i>
+                    <p>Handover</p>
+                </div>
+
             </div>
             
 
             <div className="app-footer-right">
-                <a href="#">Settings Gear</a>
+                <i class="fa-solid fa-gear"></i>
             </div>
         </nav>
     )
