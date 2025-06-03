@@ -265,37 +265,24 @@ body {
   height: var(--nav-height);
   z-index: 1000;
   display: flex;
-  justify-content: left;
+  justify-content: space-between;
   align-items: center;
   background-color: white;
   padding: 0 var(--gap);
-  border-top-style: solid;
-  border-top-width: 1px;
-  border-top-color: lightgray;
-}
-.app-footer .icons {
-  font-size: 1rem;
+  border-top: 1px solid lightgrey;
+ }
+.footer-icons {
   display: flex;
-  flex-direction: row;
-  justify-content: left;
-  width: fit-content;
-  
-  color: var(--color-primary);
+  gap: 1.5rem;
 }
-.app-footer .footer-icons {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  background-color: yellow; 
- 
-}
-.col {
+.footer-icon {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-self: flex-start;
-  
+  align-items: center;
+  font-size: 0.9rem;
+  color: var(--color-text-primary) 
 }
+
 
 
 
