@@ -1,8 +1,8 @@
 import { Outlet } from 'react-router-dom';
-import AppHeader from '../components/app_core/AppHeader';
-import AppFooter from '../app_core/AppFooter';
+import AppHeader from '../../components/app_core/AppHeader';
+import AppFooter from '../../components/app_core/AppFooter';
 
-import "../App.css"
+import "../../App.css"
 
 export default function AppLayout() {
   return (

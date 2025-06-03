@@ -268,12 +268,8 @@ body {
 }
 
 
-/*    Full-width section wrapper */
 
-.container {
-  width: 100%;
-  padding: var(--space);
-}
+
 
 /*    center text, etc. */
 .text-center {
@@ -282,28 +278,29 @@ body {
 
 
 
-
-
-
-
 /* Container & spacing */
+/*    Full-width section wrapper */
 
 .container {
   display: flex;
+  width: 100%;
+  align-items: stretch;
 }
+
+
 
 
 .dashboard-page {
   /*padding: 24px; */
-  display: flex;
+  
   flex-direction: column;
-  gap: 24px;
-  background-color: white;;
+  
+  background-color: rgb(189, 23, 23);;
 }
 
 /* Grid for the three dashboard cards */
 .dashboard-grid {
-  display: grid;
+  display: flex;
   grid-template-columns: 1fr;
   gap: 24px;
 }
