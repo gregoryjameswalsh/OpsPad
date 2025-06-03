@@ -24,7 +24,7 @@
 --clr-primary: var(--clr-english-violet);
 --clr-accent: var(--clr-english-violet-dark);
 
-  --color-primary: #574b60;
+  --color-primary: #326e50;
   --color-secondary: #2e7d32;
   --color-bg: #f5f5f5;
   --color-surface: #ffffff;
@@ -50,6 +50,10 @@
   font-variation-settings:
     "wdth" 100;
 }
+
+.primary (
+  color: var(--color-primary);
+)
 
 .lato-black {
   font-family: "Lato", sans-serif;
@@ -79,6 +83,7 @@ body {
   background-color: white;
   line-height: 1.6;
   padding-top: var(--nav-height);
+  padding-bottom: var(--nav-height)
 }
 /* Layouts */
 .landing-layout {
@@ -105,8 +110,8 @@ body {
   min-height: 100vh;
   width: 100%;
   max-width: 768px; /* iPad-first */
-  margin: 0 auto;
-  padding: var(--space);
+  margin: auto;
+  padding: 0;
  
 }
 
@@ -248,6 +253,20 @@ body {
   align-self: left;
 }
 
+.app-footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: var(--nav-height);
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--clr-bg-muted);
+  padding: 0 var(--gap);
+}
+
 
 
 
@@ -260,11 +279,22 @@ body {
   border-radius: var(--radius);
   text-decoration: none;
   font-weight: 600;
-  
 }
 
 .btn-primary:hover {
   background-color: var(--clr-english-violet-dark);
+}
+.btn-stretched {
+  display: block;
+  width: 100%;
+  background-color: var(--color-primary);
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 5px;
+  text-decoration: none;
+  text-align: center;
+  font-weight: 600;
+;
 }
 
 
@@ -292,15 +322,19 @@ body {
 
 .dashboard-page {
   /*padding: 24px; */
-  
+  display: flex;
+  flex: 1;
   flex-direction: column;
-  
-  background-color: rgb(189, 23, 23);;
+  width: 100%;
+  padding: var(--space) 0;
+  background-color: white;
 }
 
 /* Grid for the three dashboard cards */
 .dashboard-grid {
   display: flex;
+  flex-direction: column;
+  width: 100%;
   grid-template-columns: 1fr;
   gap: 24px;
 }

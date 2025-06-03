@@ -19,18 +19,18 @@ export default function DashboardPage() {
 
         <div>
             <div>
-            <a href="#" className="btn-primary">Open Day</a>
+            <a href="#" className="btn-stretched">Open Day</a>
             </div>
         </div>
       
-    
-
-      {/* Main content area with grid layout for cards */}
-      <div className="dashboard-grid">
-        <ShiftNotesCard />
-        <OpenIssuesCard />
-        <TaskChecklistCard />
-      </div>
+          {/* Main content area with grid layout for cards */}
+        <div className="container">
+          <div className="dashboard-grid">
+            <ShiftNotesCard />
+            <OpenIssuesCard />
+            <TaskChecklistCard />
+          </div>
+        </div>
 
       </div>
     </div>

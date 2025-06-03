@@ -1,4 +1,5 @@
 import React from 'react'
+
 import '../../App.css'
 
 const AppHeader = () => {
@@ -14,8 +15,10 @@ const AppHeader = () => {
 
             <div className="app-header-right">
                 <a href="#">Weather Icon</a>
-                <a href="#">Profile Icon</a>
+                
+                <i class="fa-solid fa-circle-user logo primary"></i>
             </div>
+
         </nav>
     )
 }
