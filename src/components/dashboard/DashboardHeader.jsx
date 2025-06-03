@@ -7,10 +7,7 @@ export default function DashboardHeader() {
       <div className="">
         <p>Monday, 2nd June, 2025</p>
         </div>
-        <div classname="fullwidthbutton">
-        <a href="#" className="btn-primary">Open Day</a>
-        
-      </div>
+
     </div>
   );
 }

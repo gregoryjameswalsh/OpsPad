@@ -287,6 +287,12 @@ body {
 
 
 /* Container & spacing */
+
+.container {
+  display: flex;
+}
+
+
 .dashboard-page {
   /*padding: 24px; */
   display: flex;
