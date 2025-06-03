@@ -39,6 +39,19 @@
   --font-size-base: 16px;
 
 
+/* <weight>: Use a value from 100 to 900 */
+/* <uniquifier>: Use a unique and descriptive class name */
+
+.roboto-900 {
+  font-family: "Roboto", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 900;
+  font-style: normal;
+  font-variation-settings:
+    "wdth" 100;
+}
+
+
   /* spacing unit */
   --gap: 1.5rem;
   --space: 1.5rem;
