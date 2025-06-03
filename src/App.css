@@ -35,7 +35,7 @@
   --color-alert: #ff9800;
 
   /* typography */
-  --font-family: -apple-system, BlinkMacSystemFont, Roboto, "Segoe UI",  "Helvetica Neue", Arial, sans-serif;
+  --font-family: -apple-system, BlinkMacSystemFont, Lato, Roboto, "Segoe UI",  "Helvetica Neue", Arial, sans-serif;
   --font-size-base: 16px;
 
 
@@ -49,6 +49,12 @@
   font-style: normal;
   font-variation-settings:
     "wdth" 100;
+}
+
+.lato-black {
+  font-family: "Lato", sans-serif;
+  font-weight: 900;
+  font-style: normal;
 }
 
 
