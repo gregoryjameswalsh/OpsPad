@@ -7,17 +7,17 @@ const AppFooter = () => {
             <div className="footer-icons">
 
                 <div className="footer-icon">
-                    <i class="fa-solid fa-calendar-day"></i>
+                    <i className="fa-solid fa-calendar-day"></i>
                     <p>Today</p>
                 </div>
 
                 <div className="footer-icon">
-                    <i class="fa-solid fa-list-check"></i>
+                    <i className="fa-solid fa-list-check"></i>
                     <p>Tasks</p>
                 </div>
 
                 <div className="footer-icon">
-                    <i class="fa-solid fa-handshake"></i>
+                    <i className="fa-solid fa-handshake"></i>
                     <p>Handover</p>
                 </div>
 
@@ -25,7 +25,7 @@ const AppFooter = () => {
             
 
             <div className="app-footer-right">
-                <i class="fa-solid fa-gear"></i>
+                <i className="fa-solid fa-gear"></i>
             </div>
         </nav>
     )
