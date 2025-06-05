@@ -11,7 +11,7 @@ const shift_notes_db = {
         },
 
         {
-        id: 1,
+        id: 2,
         venueId: 1,
         authorId: 1,
         noteTag: "Incident",
@@ -21,7 +21,7 @@ const shift_notes_db = {
         },
 
         {
-        id: 1,
+        id: 3,
         venueId: 1,
         authorId: 1,
         noteTag: "Maintenance",
@@ -31,7 +31,7 @@ const shift_notes_db = {
         },
 
         {
-        id: 1,
+        id: 4,
         venueId: 1,
         authorId: 1,
         noteTag: "Stock",
@@ -42,3 +42,5 @@ const shift_notes_db = {
 
     ]
 }
+
+export default shift_notes_db
