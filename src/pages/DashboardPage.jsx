@@ -1,10 +1,12 @@
 import DashboardHeader from '../components/Dashboard/DashboardHeader';
+import ShiftNotesPage from './ShiftNotesPage'
 import ShiftNotesCard from '../components/Dashboard/ShiftNotesCard';
 import OpenIssuesCard from '../components/Dashboard/OpenIssuesCard';
 import TaskChecklistCard from '../components/Dashboard/TaskChecklistCard';
 
 
 import '../App.css'; // Import global styles
+import ShiftNotesPage from './ShiftNotesPage';
 
 export default function DashboardPage() {
   return (
@@ -37,7 +39,7 @@ export default function DashboardPage() {
             {/* <TaskChecklistCard /> */}
           </div>
 
-
+            <ShiftNotesPage />
 
           <div className="next-event">
             <h3>NEXT SCHEDULED EVENT</h3>
