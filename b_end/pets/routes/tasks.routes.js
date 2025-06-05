@@ -1,23 +1,23 @@
 import express from 'express';
 import {
-    listTasks,
-    getTask,
-    editTask,
-    addTask,
-    deleteTask,
-} from "../../pets/controllers/tasks.controllers.js";
+    listNotes,
+    getNote,
+    editNote,
+    addNote,
+    deleteNote,
+} from "../../pets/controllers/notes.controllers.js";
 
 const router = express.Router();
 
-router.get('/', listTasks);
+router.get('/', listNotes);
 
-router.get('/:id', getTask);
+router.get('/:id', getNote);
 
-router.put('/:id', editTask);
+router.put('/:id', editNote);
 
-router.post('/', addTask);
+router.post('/', addNote);
 
-router.delete('/:id', deleteTask);
+router.delete('/:id', deleteNote);
 
 export default router;
 // This file defines the routes for the pets API, including listing, getting, editing, adding, and deleting pets.
