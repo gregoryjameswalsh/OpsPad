@@ -4,7 +4,6 @@ import axios from 'axios'
 import '../../App.css'
 
 
-
 const AppHeader = () => {
 
     const [coords, setCoords] = useState({ lat: null, lon: null });

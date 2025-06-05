@@ -357,6 +357,16 @@ body {
 /* 8 Pages Specific Styling */
 /*   _Dashboard Page_ */
 
+
+.dashboard-page {
+  
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  width: 100%;
+  padding: var(--space);
+  background-color: white;
+}
 .dashboard-summary {
   padding: 1rem;
   font-family: sans-serif;
@@ -475,15 +485,7 @@ body {
 /* zzOld CSS for reference at the moment
 
 
-.dashboard-page {
-  
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-  width: 100%;
-  padding: var(--space);
-  background-color: white;
-}
+
 
 
 .dashboard-grid {
