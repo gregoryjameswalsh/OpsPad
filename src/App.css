@@ -51,9 +51,9 @@
     "wdth" 100;
 }
 
-.primary (
+.primary {
   color: var(--color-primary);
-)
+}
 
 .lato-black {
   font-family: "Lato", sans-serif;
@@ -354,9 +354,129 @@ body {
 
 
 
+/* 8 Pages Specific Styling */
+/*   _Dashboard Page_ */
+
+.dashboard-summary {
+  padding: 1rem;
+  font-family: sans-serif;
+  position: relative;
+  background: white;
+}
+
+.checklist-section h2,
+.notes-section h2,
+.next-event h3 {
+  font-size: 1.1rem;
+  color: #222;
+  margin-bottom: 0.5rem;
+}
+
+.checklist {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.5rem 0;
+}
+
+.checklist li {
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1rem;
+}
+
+.note-input {
+  width: 100%;
+  padding: 0.75rem;
+  margin-bottom: 1rem;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  font-size: 1rem;
+}
+
+.note {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.tag {
+  background: #eee;
+  padding: 0.2rem 0.6rem;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.tag.incident {
+  background-color: #ffe0e0;
+  color: #b00020;
+}
+
+.tag.maintenance {
+  background-color: #e0e7ff;
+  color: #1e3a8a;
+}
+
+.note-time {
+  font-size: 0.85rem;
+  color: #666;
+}
+
+.note-text {
+  flex: 1;
+  font-size: 0.95rem;
+}
+
+.next-event {
+  background-color: #f8f8f8;
+  border-radius: 8px;
+  padding: 1rem;
+  margin-top: 2rem;
+}
+
+.next-event h3 {
+  font-size: 0.85rem;
+  color: #666;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+}
+
+.fab {
+  position: absolute;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  background-color: #28a745;
+  color: white;
+  font-size: 2rem;
+  width: 3.25rem;
+  height: 3.25rem;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* zzOld CSS for reference at the moment
+
 
 .dashboard-page {
-  /*padding: 24px; */
+  
   display: flex;
   flex: 1;
   flex-direction: column;
@@ -365,7 +485,7 @@ body {
   background-color: white;
 }
 
-/* Grid for the three dashboard cards */
+
 .dashboard-grid {
   display: flex;
   flex-direction: column;
@@ -390,4 +510,4 @@ body {
 .task-checklist-card .completed {
   text-decoration: line-through;
   color: #6b7280;
-}
+} */
