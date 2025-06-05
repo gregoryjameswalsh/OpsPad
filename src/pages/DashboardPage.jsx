@@ -6,7 +6,7 @@ import TaskChecklistCard from '../components/Dashboard/TaskChecklistCard';
 
 
 import '../App.css'; // Import global styles
-import ShiftNotesPage from './ShiftNotesPage';
+
 
 export default function DashboardPage() {
   return (
