@@ -86,7 +86,7 @@ console.log(notes)
  
             </div>
            {/* Conditionally render the EditNoteModal */}
-           {isModalOpen && SelectedNote && (
+           {isModalOpen && selectedNote && (
             <EditNoteModal
               note={selectedNote}
               onSave={saveNote}
