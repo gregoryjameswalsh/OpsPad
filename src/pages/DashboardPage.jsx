@@ -24,8 +24,11 @@ export default function DashboardPage() {
             </div>
         </div>
       
-          {/* Main content area */}
+        {/* Main content area */}
+
         <section className="dashboard-summary">
+          <div className="dashboard-flex-container">
+            <ShiftNotesCard />
           <div className="checklist-section">
             <h2>Start-of-Day Checklist</h2>
             <ul className="checklist">
@@ -38,7 +41,7 @@ export default function DashboardPage() {
             {/* <TaskChecklistCard /> */}
           </div>
 
-            <ShiftNotesCard />
+          </div>
 
           <div className="next-event">
             <h3>NEXT SCHEDULED EVENT</h3>

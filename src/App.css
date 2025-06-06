@@ -115,6 +115,8 @@ body {
  
 }
 
+
+
 /* 5.Breakpoint for different screens*/
 /*   Bump container width at a desktop size */
 @media (min-width: 1024px) {
@@ -134,15 +136,7 @@ body {
   }
 }
 
-/*  Pull in size for mobile */
-@media (max-width: 768px) {
-  .features {
-    grid-template-columns: 1fr;
-  }
-  .hero h1 {
-    font-size: 2rem;
-  }
-}
+
 
 /* 6. Utility Helpers */
 /*  __Navigation Bar__    */
@@ -373,8 +367,15 @@ body {
   position: relative;
   background: white;
 }
+.dashboard-flex-container {
+  display: flex;
+  flex-direction: row;
+  gap: var(--gap);
+  width: 100%;
+}
 
 .checklist-section {
+  flex: 1;
   border:#ddd solid 1px;
   border-radius: 8px;
   padding: 1rem;
@@ -404,6 +405,8 @@ body {
 }
 
 .notes-section {
+  flex: 1;
+  position: relative;
   border:#ddd solid 1px;
   border-radius: 8px;
   padding: 1rem;
@@ -424,7 +427,7 @@ body {
   flex-direction: column;
   align-items: flex-start;
  width: 100%;
-  gap: 1rem;
+  
   margin-bottom: 0.75rem;
   flex-wrap: wrap;
 }
@@ -443,6 +446,7 @@ body {
   border-radius: 8px;
   font-size: 0.85rem;
   font-weight: 600;
+  margin-left: 0.5rem;
 }
 
 .tag.incident {
@@ -458,13 +462,13 @@ body {
 .note-time {
   font-size: 0.85rem;
   color: #666;
-  margin-left: 1rem;
+  
 }
 
 .note-text {
   flex: 1;
   font-size: 0.95rem;
-  margin-left: 1rem;
+  margin-left: 0.5rem;
 }
 
 .next-event {
@@ -481,11 +485,11 @@ body {
   text-transform: uppercase;
 }
 
-.fab {
+.new-button {
   position: absolute;
-  bottom: 1.5rem;
+  top: 1.5rem;
   right: 1.5rem;
-  background-color: #28a745;
+  background-color: var(--color-primary);
   color: white;
   font-size: 2rem;
   width: 3.25rem;
@@ -496,10 +500,25 @@ body {
   box-shadow: 0 4px 6px rgba(0,0,0,0.2);
 }
 
+/* ==|| MEDIA QUERIES SECTION ||== */
+/*    Responsive Design */
+
+/* All css above this point should be mobile-first */
 
 
-
-
+/*  Pull in size for mobile */
+@media (max-width: 768px) {
+  .features {
+    grid-template-columns: 1fr;
+  }
+  .hero h1 {
+    font-size: 2rem;
+  }
+  .dashboard-flex-container {
+    flex-direction: column;
+  ;
+  }
+}
 
 
 
