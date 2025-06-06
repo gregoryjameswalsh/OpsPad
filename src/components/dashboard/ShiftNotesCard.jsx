@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import axios from 'axios'
 
 import '../../App.css'
+import EditNoteModal from '../modals/EditNoteModal'
 
 export default function ShiftNotesCard() {
     const [notes, setNotes] = useState([])
@@ -84,7 +85,15 @@ console.log(notes)
               })}
  
             </div>
-           
+           {/* Conditionally render the EditNoteModal */}
+           {isModalOpen && SelectedNote && (
+            <EditNoteModal
+              note={selectedNote}
+              onSave={saveNote}
+              onDelete={deleteNote}
+              onClose={closeModal}
+              />
+           )}
           </div>
   
   );
