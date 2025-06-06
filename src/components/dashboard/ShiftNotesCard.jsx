@@ -64,7 +64,6 @@ console.log(notes)
             <button className="new-button">+</button> 
 
             <div className="note">
-
               {notes?.map((note) => {
 
                 const dateObj = new Date(note.createdAt);
@@ -75,9 +74,8 @@ console.log(notes)
                   
                 })
 
-
                 return (
-                  <div className="note-line" key={note.id}>
+                  <div className="note-line" key={note.id} onClick={() => openEditModal(note)}>
                     <span className="note-time">{timeString}</span>
                     <span className={`tag ${note.noteTag.toLowerCase()}`}>{note.noteTag}</span>
                     <span className="note-text">{note.notes}</span>
