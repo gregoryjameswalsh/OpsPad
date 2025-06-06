@@ -4,19 +4,53 @@ import axios from 'axios'
 import '../../App.css'
 
 export default function ShiftNotesCard() {
+    const [notes, setNotes] = useState([])
+    const [selectedNote, setSelectedNote] = useState(null)
+    const [isModalOpen, setIsModalOpen] = useState(false)
     
-    const [notes, setNotes] = useState([]);
+
+    // Fetch notes from backend
     const getNotes = async () => {
       try {
-        const response = await axios.get(`http://localhost:3000/notes`)
-        if (response.status === 200) setNotes(response.data)
-      
-        } catch (error) {
+          const response = await axios.get(`http://localhost:3000/notes`)
+          if (response.status === 200) setNotes(response.data)
+          } catch (error) {
           console.error('error', error)
-        }
+          }
+    }
+    useEffect(() => { getNotes() }, [])
+
+
+     // Function to open the modal, passing in the note the user has clicked 
+    function openEditModal(note) {
+      setSelectedNote(note)
+      setIsModalOpen(note)
     }
 
-    useEffect(() => { getNotes() }, [])
+    // Function to save the note when the user clicks "Save"
+    // Currently ONLY UPDATES LOCAL STATE
+    // Need to write the 'call axios.put(...)' code here before/after updating state
+    // in order to persist to server / db file
+    function saveNote(updatedNote) {
+      setNotes((prev) => 
+      prev.map((n) => (n.id === updatedNote.id ? updatedNote : n))
+      )
+      closeModal()
+    }
+
+    // Function to delete the note when the user clicks "Delete"
+    // Currently ONLY UPDATES LOCAL STATE
+    // Need to write the 'call axios.delete(...)' code here before/after updating state
+    // in order to persist to server / db file
+    function deleteNote(noteId) {
+      setNotes((prev) => prev.filter((n) => n.id !== noteId))
+      closeModal()
+    }
+
+    function closeModal() {
+      setIsModalOpen(false)
+      setSelectedNote(null)
+    }
 
 console.log(notes)
 
