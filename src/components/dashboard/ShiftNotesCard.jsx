@@ -20,7 +20,6 @@ export default function ShiftNotesCard() {
     }
     useEffect(() => { getNotes() }, [])
 
-<<<<<<< HEAD
 
      // Function to open the modal, passing in the note the user has clicked 
     function openEditModal(note) {
@@ -53,10 +52,8 @@ export default function ShiftNotesCard() {
       setSelectedNote(null)
     }
 
-=======
 console.log(notes)
 
->>>>>>> 8c040e2847f0b03a5ac04bdfec62bc624a87c6f4
   return (
   
           
@@ -67,9 +64,6 @@ console.log(notes)
             <button className="new-button">+</button> 
 
             <div className="note">
-<<<<<<< HEAD
-              {notes?.map((task) => {
-=======
 
               {notes?.map((note) => {
 
@@ -82,7 +76,6 @@ console.log(notes)
                 })
 
 
->>>>>>> 8c040e2847f0b03a5ac04bdfec62bc624a87c6f4
                 return (
                   <div className="note-line" key={note.id}>
                     <span className="note-time">{timeString}</span>
