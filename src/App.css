@@ -325,6 +325,9 @@ body {
   margin: var(--space) 0;
 ;
 }
+.btn-stretched:hover {
+  background-color: #008383;
+}
 
 
 
@@ -498,6 +501,9 @@ body {
   border-radius: 50%;
   cursor: pointer;
   box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+}
+.new-button:hover {
+  background-color: #008383;
 }
 
 /* ==|| MEDIA QUERIES SECTION ||== */
