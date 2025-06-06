@@ -358,7 +358,7 @@ body {
   flex: 1;
   flex-direction: column;
   width: 100%;
-  padding: var(--space);
+  padding: 0 var(--space);
   background-color: white;
 }
 .dashboard-summary {
@@ -379,7 +379,7 @@ body {
   border:#ddd solid 1px;
   border-radius: 8px;
   padding: 1rem;
-  margin-top: 2rem;
+ 
 }
 
 .checklist-section h2,
@@ -410,7 +410,7 @@ body {
   border:#ddd solid 1px;
   border-radius: 8px;
   padding: 1rem;
-  margin-top: 2rem;
+  
 }
 
 .note-input {
@@ -475,7 +475,7 @@ body {
   background-color: #f8f8f8;
   border-radius: 8px;
   padding: 1rem;
-  margin-top: 2rem;
+  margin-top: 1rem;
 }
 
 .next-event h3 {
@@ -492,8 +492,8 @@ body {
   background-color: var(--color-primary);
   color: white;
   font-size: 2rem;
-  width: 3.25rem;
-  height: 3.25rem;
+  width: 2.25rem;
+  height: 2.25rem;
   border: none;
   border-radius: 50%;
   cursor: pointer;
