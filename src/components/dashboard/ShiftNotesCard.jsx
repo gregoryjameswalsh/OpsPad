@@ -3,11 +3,15 @@ import axios from 'axios'
 
 import '../../App.css'
 import EditNoteModal from '../modals/EditNoteModal'
+import NewNoteModal from '../modals/NewNoteModal'
 
 export default function ShiftNotesCard() {
     const [notes, setNotes] = useState([])
     const [selectedNote, setSelectedNote] = useState(null)
+    const [newNoteText, setNewNoteText] = useState('')
+    const [newNoteInitialText, setNewNoteInitialText] = useState('')
     const [isModalOpen, setIsModalOpen] = useState(false)
+    const [isNewNoteModalOpen, setIsNewNoteModalOpen] = useState(false)
     
 
     // Fetch notes from backend
@@ -53,6 +57,16 @@ export default function ShiftNotesCard() {
       setSelectedNote(null)
     }
 
+
+    function saveNewNote(newNote) {
+      axios.post('http://localhost:3000/notes', newNote)
+      .then((response) => {
+        setNotes((prev) => [...prev, response.data])
+        setIsNewNoteModalOpen(false)
+      })
+      .catch((error) => console.error('Error saving new note:', error))
+    }
+
 console.log(notes)
 
   return (
@@ -61,8 +75,24 @@ console.log(notes)
 
           <div className="notes-section">
             <h2>Ongoing Notes</h2>
-            <input className="note-input" type="text" placeholder="Add a note..." />
-            <button className="new-button">+</button> 
+            <input 
+              className="note-input" 
+              type="text" 
+              placeholder="Add a note..."
+              value={newNoteText}
+              onChange={(e) => setNewNoteText(e.target.value)}
+               />
+            <button 
+              className="new-button"
+              onClick={() => {
+              if (!newNoteText.trim()) return // Don't open modal if input is empty
+                setNewNoteInitialText(newNoteText.trim()) //pass the trimmed text to the modal
+                setNewNoteText('') //clear the input field
+                setIsNewNoteModalOpen(true) //open the modal
+
+                console.log('New Note Modal Opened')
+              }}
+              >+</button> 
 
             <div className="note">
               {notes?.map((note) => {
@@ -92,6 +122,14 @@ console.log(notes)
               onSave={saveNote}
               onDelete={deleteNote}
               onClose={closeModal}
+              />
+           )}
+
+           {isNewNoteModalOpen && (
+            <NewNoteModal
+              initialText={newNoteInitialText}
+              onSave={saveNewNote}
+              onClose={() => setIsNewNoteModalOpen(false)}
               />
            )}
           </div>

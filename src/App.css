@@ -7,6 +7,12 @@
   padding: 0;
 }
 
+html, body, #root {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+
 /* 2. CSS for colour scheme, typography, and layout */
 :root {
   /* palette */
@@ -112,6 +118,7 @@ body {
   max-width: 768px; /* iPad-first */
   margin: auto;
   padding: 0;
+  overflow-x: hidden;
  
 }
 
@@ -345,7 +352,11 @@ body {
 
 .container {
   display: flex;
+  flex-direction: column;
   width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  overflow-x: hidden;
   
 }
 
@@ -358,11 +369,13 @@ body {
 .dashboard-page {
   
   display: flex;
-  flex: 1;
+  
   flex-direction: column;
   width: 100%;
-  padding: 0 var(--space);
+  max-width: 100%;;
+  padding: 0 var(--space) var(--nav-height);
   background-color: white;
+  overflow-x: hidden;
 }
 .dashboard-summary {
   
@@ -413,6 +426,9 @@ body {
   border:#ddd solid 1px;
   border-radius: 8px;
   padding: 1rem;
+    width: 100%;
+  max-width: 100%;
+  overflow: hidden;
   
 }
 
@@ -440,8 +456,15 @@ body {
   justify-content: flex-start;
   align-items: center;
   width: 100%;
+  min-width: 0;
+  max-width: 100%;
   padding: 0.5rem 0;
-  cursor: pointer
+  cursor: pointer;
+  min-width: 0;
+  overflow: hidden;
+  min-width: 0;
+  word-break: break-all;
+  overflow-wrap: anywhere;
 }
 
 .tag {
@@ -451,6 +474,8 @@ body {
   font-size: 0.85rem;
   font-weight: 600;
   margin-left: 0.5rem;
+  flex-shrink: 0;
+  white-space: nowrap;
 }
 
 .tag.incident {
@@ -464,13 +489,20 @@ body {
 }
 
 .note-time {
+  flex-shrink: 0;
+  white-space: nowrap;
   font-size: 0.85rem;
   color: #666;
   
 }
 
 .note-text {
-  flex: 1;
+    white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex-grow: 1;
+  flex-shrink: 1;
+  min-width: 0;
   font-size: 0.95rem;
   margin-left: 0.5rem;
 }
@@ -591,6 +623,11 @@ body {
   background: #28a745;
   color: #fff;
 }
+.save-button:disabled {
+  background-color: #ccc;
+  color: #666;
+  cursor: not-allowed;
+}
 .cancel-button {
   background: #6c757d;
   color: #fff;
@@ -601,6 +638,31 @@ body {
   margin-right: auto;
 }
 
+/* new note modal */
+
+.modal-edit-note {
+  background: #fff;
+  padding: 2rem;
+  border-radius: 12px;
+  max-width: 400PX;
+  Width: 100%;
+}
+ .modal-edit-note textarea {
+  width: 100%;
+  height: 100px;
+  margin-top: 1rem;
+ }
+
+ .tag-selector {
+  margin-top: 1rem;
+ }
+
+ .modal-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 1rem;;
+ }
 
 
 /* ==|| MEDIA QUERIES SECTION ||== */
