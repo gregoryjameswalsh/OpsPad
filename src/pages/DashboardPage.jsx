@@ -1,7 +1,7 @@
-import DashboardHeader from '../components/Dashboard/DashboardHeader';
-import ShiftNotesCard from '../components/Dashboard/ShiftNotesCard';
-import OpenIssuesCard from '../components/Dashboard/OpenIssuesCard';
-import TaskChecklistCard from '../components/Dashboard/TaskChecklistCard';
+import DashboardHeader from '../components/dashboard/DashboardHeader';
+import ShiftNotesCard from '../components/dashboard/ShiftNotesCard';
+import OpenIssuesCard from '../components/dashboard/OpenIssuesCard';
+import TaskChecklistCard from '../components/dashboard/TaskChecklistCard';
 
 
 import '../App.css'; // Import global styles

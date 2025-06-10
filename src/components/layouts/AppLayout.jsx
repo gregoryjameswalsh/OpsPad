@@ -1,6 +1,7 @@
 import { Outlet } from 'react-router-dom';
 import AppHeader from '../../components/app_core/AppHeader';
 import AppFooter from '../../components/app_core/AppFooter';
+import DashboardHeader from '../dashboard/DashboardHeader';
 
 import "../../App.css"
 
@@ -11,6 +12,8 @@ export default function AppLayout() {
       <div>
         <AppHeader /> {/* Strip across the top of the app that stays no matter what page you're on */}
       </div>
+      
+
       <div>
         <Outlet />
       </div>

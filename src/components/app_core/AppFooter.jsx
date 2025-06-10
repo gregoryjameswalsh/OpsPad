@@ -6,15 +6,17 @@ const AppFooter = () => {
         <nav className="app-footer">
             <div className="footer-icons">
 
-                <div className="footer-icon">
+                <a className="footer-icon"
+                    href="/Dashboard">
                     <i className="fa-solid fa-calendar-day"></i>
                     <p>Today</p>
-                </div>
+                </a>
 
-                <div className="footer-icon">
+                <a className="footer-icon"
+                    href="/notes">
                     <i className="fa-solid fa-list-check"></i>
                     <p>Tasks</p>
-                </div>
+                </a>
 
                 <div className="footer-icon">
                     <i className="fa-solid fa-handshake"></i>
