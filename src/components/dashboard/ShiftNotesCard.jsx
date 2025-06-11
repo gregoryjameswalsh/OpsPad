@@ -1,12 +1,15 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import axios from 'axios'
 
 import '../../App.css'
 import EditNoteModal from '../modals/EditNoteModal'
 import NewNoteModal from '../modals/NewNoteModal'
+import NoteList from '../components/NoteList'
+import { useNotes } from '../hooks/useNotes'
 
 export default function ShiftNotesCard() {
-    const [notes, setNotes] = useState([])
+
+    const { notes, addNote, editNote, removeNote } = useNotes()
     const [selectedNote, setSelectedNote] = useState(null)
     const [newNoteText, setNewNoteText] = useState('')
     const [newNoteInitialText, setNewNoteInitialText] = useState('')
@@ -14,125 +17,68 @@ export default function ShiftNotesCard() {
     const [isNewNoteModalOpen, setIsNewNoteModalOpen] = useState(false)
     
 
-    // Fetch notes from backend
-    const getNotes = async () => {
-      try {
-          const response = await axios.get(`http://localhost:3000/notes`)
-          if (response.status === 200) setNotes(response.data)
-          } catch (error) {
-          console.error('error', error)
-          }
-    }
-    useEffect(() => { getNotes() }, [])
-
-
      // Function to open the modal, passing in the note the user has clicked 
-    function openEditModal(note) {
+    function openEditModal = (note) => {
       setSelectedNote(note)
-      setIsModalOpen(note)
-    }
-
-    // Function to save the note when the user clicks "Save"
-    // Currently ONLY UPDATES LOCAL STATE
-    // Need to write the 'call axios.put(...)' code here before/after updating state
-    // in order to persist to server / db file
-    function saveNote(updatedNote) {
-      setNotes((prev) => 
-      prev.map((n) => (n.id === updatedNote.id ? updatedNote : n))
-      )
-      closeModal()
-    }
-
-    // Function to delete the note when the user clicks "Delete"
-    // Currently ONLY UPDATES LOCAL STATE
-    // Need to write the 'call axios.delete(...)' code here before/after updating state
-    // in order to persist to server / db file
-    function deleteNote(noteId) {
-      setNotes((prev) => prev.filter((n) => n.id !== noteId))
-      closeModal()
-    }
-
-    function closeModal() {
-      setIsModalOpen(false)
-      setSelectedNote(null)
-    }
-
-
-    function saveNewNote(newNote) {
-      axios.post('http://localhost:3000/notes', newNote)
-      .then((response) => {
-        setNotes((prev) => [...prev, response.data])
-        setIsNewNoteModalOpen(false)
-      })
-      .catch((error) => console.error('Error saving new note:', error))
+      setIsModalOpen(true)
     }
 
 console.log(notes)
 
   return (
-  
-          
 
-          <div className="notes-section">
-            <h2>Ongoing Notes</h2>
-            <input 
-              className="note-input" 
-              type="text" 
-              placeholder="Add a note..."
-              value={newNoteText}
-              onChange={(e) => setNewNoteText(e.target.value)}
-               />
-            <button 
-              className="new-button"
-              onClick={() => {
-              if (!newNoteText.trim()) return // Don't open modal if input is empty
-                setNewNoteInitialText(newNoteText.trim()) //pass the trimmed text to the modal
-                setNewNoteText('') //clear the input field
-                setIsNewNoteModalOpen(true) //open the modal
+     <div className="notes-section">
+        <h2>Ongoing Notes</h2>
 
-                console.log('New Note Modal Opened')
+        <input 
+            className="note-input" 
+            type="text" 
+            placeholder="Add a note..."
+            value={newNoteText}
+            onChange={(e) => setNewNoteText(e.target.value)}
+            />
+
+          <button 
+            className="new-button"
+            onClick={() => {
+              if (!newNoteText.trim()) return           // Don't open modal if input is empty
+              setNewNoteInitialText(newNoteText.trim()) //pass the trimmed text to the modal
+              setNewNoteText('')                        //clear the input field
+              setIsNewNoteModalOpen(true)               //open the modal
+              console.log('New Note Modal Opened')
               }}
-              >+</button> 
+              >+
+          </button> 
 
-            <div className="note">
-              {notes?.map((note) => {
+          <NoteList
+              notes={notes}
+              onEdit={openEditModal}
+          />
 
-                const dateObj = new Date(note.createdAt);
-                const timeString = dateObj.toLocaleTimeString('en-GB', {
-                  hour: '2-digit',
-                  minute: '2-digit',
-                  hour12: false,
-                  
-                })
-
-                return (
-                  <div className="note-line" key={note.id} onClick={() => openEditModal(note)}>
-                    <span className="note-time">{timeString}</span>
-                    <span className={`tag ${note.noteTag.toLowerCase()}`}>{note.noteTag}</span>
-                    <span className="note-text">{note.notes}</span>
-                  </div>  
-                )
-              })}
- 
-            </div>
            {/* Conditionally render the EditNoteModal */}
            {isModalOpen && selectedNote && (
             <EditNoteModal
               note={selectedNote}
-              onSave={saveNote}
-              onDelete={deleteNote}
-              onClose={closeModal}
-              />
+              onSave={editNote}
+              onDelete={removeNote}
+              onClose={() => {
+                setIsModalOpen(false)
+                setSelectedNote(null)
+              }}
+            />
            )}
 
            {isNewNoteModalOpen && (
             <NewNoteModal
               initialText={newNoteInitialText}
               onSave={saveNewNote}
+              onClose={(note) => {
+                addNote(note)
+                setIsNewNoteModalOpen(false)
+              }}
               onClose={() => setIsNewNoteModalOpen(false)}
-              />
+            />
            )}
-          </div>
-  
-  );
+      </div>
+  )
 }
