@@ -1,6 +1,7 @@
 import { useState } from 'react'  
 
 import '../../App.css'
+
 import EditNoteModal from '../modals/EditNoteModal'
 import NewNoteModal from '../modals/NewNoteModal'
 import NoteList from '../notes/NoteList'
@@ -23,7 +24,6 @@ export default function ShiftNotesCard() {
       setIsModalOpen(true)
     }
 
-console.log(notes)
 
   return (
 
