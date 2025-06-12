@@ -1,11 +1,11 @@
-import { useState } from 'react'
-import axios from 'axios'
+import { useState } from 'react'  
 
 import '../../App.css'
 import EditNoteModal from '../modals/EditNoteModal'
 import NewNoteModal from '../modals/NewNoteModal'
-import NoteList from '../components/NoteList'
-import { useNotes } from '../hooks/useNotes'
+import NoteList from '../notes/NoteList'
+import { useNotes } from '../../hooks/useNotes'
+
 
 export default function ShiftNotesCard() {
 
@@ -18,7 +18,7 @@ export default function ShiftNotesCard() {
     
 
      // Function to open the modal, passing in the note the user has clicked 
-    function openEditModal = (note) => {
+    const openEditModal = (note) => {
       setSelectedNote(note)
       setIsModalOpen(true)
     }
@@ -52,16 +52,26 @@ console.log(notes)
 
           <NoteList
               notes={notes}
-              onEdit={openEditModal}
+              onNoteClick={openEditModal}
+              layout={"summary"}
           />
 
            {/* Conditionally render the EditNoteModal */}
            {isModalOpen && selectedNote && (
             <EditNoteModal
               note={selectedNote}
-              onSave={editNote}
-              onDelete={removeNote}
+              onSave={(updatedNote) => {
+                editNote(updatedNote)
+                setIsModalOpen(false)
+                setSelectedNote(null)
+              }}
+              onDelete={(id) => {
+                removeNote(id)
+                setIsModalOpen(false)
+                setSelectedNote(null)
+              }}
               onClose={() => {
+                console.log('Closing edit Modal')
                 setIsModalOpen(false)
                 setSelectedNote(null)
               }}
@@ -71,12 +81,13 @@ console.log(notes)
            {isNewNoteModalOpen && (
             <NewNoteModal
               initialText={newNoteInitialText}
-              onSave={saveNewNote}
-              onClose={(note) => {
+              onSave={(note) => {
+                console.log('closing new note modal')
                 addNote(note)
                 setIsNewNoteModalOpen(false)
+                
               }}
-              onClose={() => setIsNewNoteModalOpen(false)}
+              onClose={() => setIsNewNoteModalOpen(false)} 
             />
            )}
       </div>

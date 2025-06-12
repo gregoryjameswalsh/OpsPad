@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { fetchNotes, createNote, updateNote, deleteNoteById } from '../api/NotesApi'
 
 export function useNotes() {
-    const [notes, SetNotes] = useState([])
+    const [notes, setNotes] = useState([])
 
     useEffect(() => {
         fetchNotes().then((res) => setNotes(res.data)).catch(console.error)
