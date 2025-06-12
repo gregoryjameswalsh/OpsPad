@@ -5,7 +5,7 @@ import '../App.css'
 import EditNoteModal from '../components/modals/EditNoteModal'
 import NewNoteModal from '../components/modals/NewNoteModal'
 import NoteList from '../components/notes/NoteList'
-import { useNotes } from '../components/hooks/useNotes'
+import { useNotes } from '../hooks/useNotes'
 
 import DashboardHeader from '../components/dashboard/DashboardHeader';
 import ShiftNotesCard from '../components/dashboard/ShiftNotesCard';
@@ -25,24 +25,11 @@ export default function ShiftNotesPage() {
         setIsModalOpen(true)
       }
   
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
   return (
-
-
 
     <div>
       <DashboardHeader />
     
-
      <div className="notes-section">
         <h2>Ongoing Notes</h2>
 
@@ -69,7 +56,7 @@ export default function ShiftNotesPage() {
           <NoteList
               notes={notes}
               onNoteClick={openEditModal}
-              layout={"summary"}
+              layout={"detailed"}
           />
 
            {/* Conditionally render the EditNoteModal */}

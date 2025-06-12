@@ -13,7 +13,8 @@ export default function NoteCard({ note, onClick, layout = 'summary' }) {
 
             {layout === 'detailed' && (
                 <div>
-                <h1>more detail goes here</h1>
+                    <span>{note.authorId}</span>
+                <p>more detail goes here</p>
                 </div>
             )}
         </div>
