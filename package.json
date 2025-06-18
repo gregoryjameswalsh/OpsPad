@@ -4,9 +4,11 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "test": "jest",
-    "dev": "vite",
+    "dev": "concurrently -k -n SERVER,CLIENT -c yellow,cyan \"npm:server\" \"npm:client\"",
+    "client": "cd client && vite",
+    "server": "nodemon server/index.js",
     "build": "vite build",
+    "test": "jest",
     "lint": "eslint .",
     "preview": "vite preview"
   },
@@ -33,6 +35,7 @@
     "@types/react-dom": "^19.1.2",
     "@vitejs/plugin-react": "^4.4.1",
     "babel-jest": "^29.5.0",
+    "concurrently": "^9.1.2",
     "eslint": "^9.25.0",
     "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-plugin-react-refresh": "^0.4.19",
