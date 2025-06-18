@@ -1,7 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 
-import tasksRoutes from './routes/tasks.Routes.js'
+// import tasksRoutes from './routes/tasks.Routes.js'
 import { notesRoutes, tasksRoutes } from './routes/index.js'
 
 // Need to refactor at some point with index.js in each folder //
