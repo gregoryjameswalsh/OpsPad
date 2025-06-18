@@ -2,7 +2,7 @@ import express from 'express';
 import cors from 'cors';
 
 // import tasksRoutes from './routes/tasks.Routes.js'
-import { notesRoutes, tasksRoutes } from './routes/index.js'
+import { notesRoutes, tasksRoutes, usersRoutes } from './routes/index.js'
 
 // Need to refactor at some point with index.js in each folder //
 // Like the below... //
@@ -21,6 +21,6 @@ app.use(express.json())
 
 app.use('/tasks', tasksRoutes)
 app.use('/notes', notesRoutes)
-
+app.use('/users', usersRoutes)
 
 export default app;
