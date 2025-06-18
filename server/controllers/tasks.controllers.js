@@ -1,4 +1,4 @@
-import { getItem, listItems, editItem, addItem, deleteItem } from '../../../b_end/pets/models/tasks.models.js';
+import { getItem, listItems, editItem, addItem, deleteItem } from '../models/tasks.models.js';
 
 export const getTask = (req, res) => {
     try {
