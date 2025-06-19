@@ -15,7 +15,7 @@ export default function DashboardPage() {
         {/* Dashboard Header part - "Today / Tomorrow / Next Week / etc" and the date today} */}
 
         <div>
-            <DashboardHeader />
+           {/*} <DashboardHeader /> */}
         </div>
 
         <div>

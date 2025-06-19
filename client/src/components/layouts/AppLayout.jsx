@@ -12,11 +12,16 @@ export default function AppLayout() {
       <div>
         <AppHeader /> {/* Strip across the top of the app that stays no matter what page you're on */}
       </div>
-      
+      <div>
+        <TodayHeader />
+      </div>
+
 
       <div>
         <Outlet />
       </div>
+
+
       <div>
         <AppFooter /> {/* Strip across the bottom of the app that stays no matter what page you're on */}
       </div>
