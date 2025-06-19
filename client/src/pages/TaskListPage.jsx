@@ -22,6 +22,7 @@ function TaskListPage() {
     }
 
     useEffect(() => { getTasks() }, [])
+    console.log(tasks)
 
     return (
         <>
@@ -30,7 +31,7 @@ function TaskListPage() {
         {tasks?.map((task) => {
             return (
                 <div key={task?.id}>
-                    <p>{task?.text} - {task?.completed} - {task?.photoUrl}</p>
+                    <p>{task?.title} - {task?.isCompleted} - {task?.assignedTo}</p>
 
                     <Link to={`/${task?.id}`}>
                     <button>Task detail</button></Link>

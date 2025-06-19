@@ -4,7 +4,7 @@ import express from 'express';
 import {
     listUsers,
     getUser,
-    editUSer,
+    editUser,
     addUser,
     deleteUser,
 } from "../controllers/users.controllers.js";

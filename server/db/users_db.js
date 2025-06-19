@@ -51,3 +51,6 @@ const users_db = {
 ]
 
 }
+
+
+export default users_db
