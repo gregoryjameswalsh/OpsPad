@@ -1,7 +1,5 @@
 import { useState } from 'react'
 
-import '../App.css'
-
 import EditNoteModal from '../components/modals/EditNoteModal'
 import NewNoteModal from '../components/modals/NewNoteModal'
 import NoteList from '../components/notes/NoteList'
@@ -10,6 +8,7 @@ import { useNotes } from '../hooks/useNotes'
 import DashboardHeader from '../components/dashboard/DashboardHeader';
 import ShiftNotesCard from '../components/dashboard/ShiftNotesCard';
 
+import '../App.css'
 
 export default function ShiftNotesPage() {
 
@@ -21,8 +20,8 @@ export default function ShiftNotesPage() {
       const [isNewNoteModalOpen, setIsNewNoteModalOpen] = useState(false)
   
       const openEditModal = (note) => {
-        setSelectedNote(note)
-        setIsModalOpen(true)
+            setSelectedNote(note)
+            setIsModalOpen(true)
       }
   
   return (
