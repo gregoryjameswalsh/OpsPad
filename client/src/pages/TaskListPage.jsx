@@ -12,7 +12,7 @@ import '../App.css'
 function TaskListPage() {
 
 
-    const { notes, addNote, editNote, removeNote } = useNotes()
+    const { tasks, addTask, editTask, removeTask } = useTasks()
     
     //const [tasks, setTasks] = useState([])
 
@@ -21,8 +21,8 @@ function TaskListPage() {
     return (
         <div>
         <h2>Task List</h2>
-       <NoteList
-        notes={notes}
+       <TaskList
+        tasks={tasks}
         layout={"detailed"}
         /> 
 

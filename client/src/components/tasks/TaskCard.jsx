@@ -1,4 +1,5 @@
 export default function TaskCard({ task, onClick, layout = 'summary' }) {
+    console.log(task)
     const time = new Date(task.createdAt).toLocaleTimeString('en-GB', {
         hour: '2-digit',
         minute: '2-digit',
@@ -13,12 +14,12 @@ export default function TaskCard({ task, onClick, layout = 'summary' }) {
             <span className="task-tickbox">{task.isCompleted}</span>
             <span className="note-time">{time}</span>
             <span className="note-title">{task.title}</span>        
-            <span className="note-text">{note.notes}</span>
+            <span className="note-text">{task.notes}</span>
             <span className="task-assigned-to">{task.assignedTo}</span>
 
             {layout === 'detailed' && (
                 <div>
-                    <span>{note.authorId}</span>
+                    <span>{task.authorId}</span>
                 <p>more detail goes here</p>
                 </div>
             )}

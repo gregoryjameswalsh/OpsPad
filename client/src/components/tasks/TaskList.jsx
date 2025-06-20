@@ -7,7 +7,7 @@ export default function TaskList({ tasks, onNoteClick, layout = 'summary'}) {
             {tasks.map(task => (
                 <TaskCard
                     key={task.id}
-                    note={task}
+                    task={task}
                     layout={layout}
                     onClick={onNoteClick}
                 />

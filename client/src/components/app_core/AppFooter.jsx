@@ -14,8 +14,8 @@ const AppFooter = () => {
 
                 <a className="footer-icon"
                     href="/notes">
-                    <i className="fa-solid fa-list-clipboard"></i>
-                    <p>Tasks</p>
+                    <i className="fa-regular fa-clipboard"></i>
+                    <p>Notes</p>
                 </a>
 
                 <a className="footer-icon"

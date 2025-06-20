@@ -1,6 +1,7 @@
 import { Outlet } from 'react-router-dom';
 import AppHeader from '../../components/app_core/AppHeader';
 import AppFooter from '../../components/app_core/AppFooter';
+import TodayHeader from '../../components/app_core/TodayHeader';
 import DashboardHeader from '../dashboard/DashboardHeader';
 
 import "../../App.css"
