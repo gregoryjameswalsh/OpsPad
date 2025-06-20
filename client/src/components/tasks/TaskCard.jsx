@@ -11,8 +11,9 @@ export default function TaskCard({ task, onClick, layout = 'summary' }) {
 
     return (
         <div className={`note-line ${layout}`} onClick={() => onClick?.(task)}>
+            <input type="checkbox" />
             <span className="task-tickbox">{task.isCompleted}</span>
-            <span className="note-time">{time}</span>
+            
             <span className="note-title">{task.title}</span>        
             <span className="note-text">{task.notes}</span>
             <span className="task-assigned-to">{task.assignedTo}</span>

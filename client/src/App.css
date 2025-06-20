@@ -110,7 +110,7 @@ body {
   flex-direction: column;
   min-height: 100vh;
   width: 100%;
-  max-width: 768px; /* iPad-first */
+  /* max-width: 768px; /* iPad-first */
   margin: auto;
   padding: 0;
   overflow-x: hidden;

@@ -19,13 +19,27 @@ function TaskListPage() {
 
 
     return (
-        <div>
-        <h2>Task List</h2>
-       <TaskList
-        tasks={tasks}
-        layout={"detailed"}
-        /> 
+        <div className="dashboard-page">
+            <div className="dashboard-summary">
+                <div className="dashboard-flex-container">
 
+                <TaskList
+                tasks={tasks}
+                layout={"detailed"}
+                /> 
+
+                <div>
+                    <div>
+                    Checklist % bar thing here?
+                    </div>
+                                    <div>
+                    Add a task box in this bottom half?
+                </div>
+                </div>
+
+                
+                </div>
+</div>
     </div>
     )
 }

@@ -2,12 +2,19 @@ import DashboardHeader from '../components/dashboard/DashboardHeader';
 import ShiftNotesCard from '../components/dashboard/ShiftNotesCard';
 import OpenIssuesCard from '../components/dashboard/OpenIssuesCard';
 import TaskChecklistCard from '../components/dashboard/TaskChecklistCard';
+import TaskList from '../components/tasks/TaskList'
+
+import { useTasks } from '../hooks/useTasks'
 
 
 import '../App.css'; // Import global styles
 
 
+
 export default function DashboardPage() {
+
+    const { tasks, addTask, editTask, removeTask } = useTasks()
+
   return (
     // <div className="container">
       <div className="dashboard-page">
@@ -30,15 +37,17 @@ export default function DashboardPage() {
           <div className="dashboard-flex-container">
             <ShiftNotesCard />
           <div className="checklist-section">
-            <h2>Start-of-Day Checklist</h2>
-            <ul className="checklist">
-              <li><input type="checkbox" />Cash float counted</li>
-              <li><input type="checkbox" />Doors unlocked</li>
-              <li><input type="checkbox" />Staff briefing completed</li>
-            </ul>
-            {/* <ShiftNotesCard /> */}
-            {/* <OpenIssuesCard /> */}
-            {/* <TaskChecklistCard /> */}
+            <h2>Today's Tasks</h2>
+              <div className="checklist-section">
+                x% of checklists complete
+              </div>
+            
+              <div className="checklist">
+              <TaskList
+                tasks={tasks}
+                layout={"summary"} />
+                </div>
+
           </div>
 
           </div>
