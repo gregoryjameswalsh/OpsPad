@@ -43,7 +43,7 @@ export default function DashboardPage() {
               </div>
             
               <div className="checklist">
-              <TaskList
+              <TaskChecklistCard
                 tasks={tasks}
                 layout={"summary"} />
                 </div>
