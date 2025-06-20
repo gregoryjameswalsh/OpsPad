@@ -22,10 +22,9 @@ function App() {
   // const [petToEdit, setPetToEdit] = useState(null) 
 
 
-  // temp added 'landing' to core route for testing layouts
   return (
     <div>
-
+      <div className="Container">
       <div className="App">
         <Router>
         <Routes>
@@ -47,6 +46,7 @@ function App() {
           </Route>
         </Routes>
         </Router>
+      </div>
       </div>
     </div>
   )

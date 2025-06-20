@@ -9,7 +9,7 @@ import '../App.css'; // Import global styles
 
 export default function DashboardPage() {
   return (
-    <div className="container">
+    // <div className="container">
       <div className="dashboard-page">
 
         {/* Dashboard Header part - "Today / Tomorrow / Next Week / etc" and the date today} */}
