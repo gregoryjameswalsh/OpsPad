@@ -28,7 +28,7 @@ export default function ShiftNotesPage() {
   return (
 
     <div>
-      <DashboardHeader />
+    
     
      <div className="notes-section">
         <h2>Ongoing Notes</h2>

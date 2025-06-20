@@ -11,7 +11,7 @@ const LandingPage = lazy(() => import ('./pages/LandingPage'))
 const OpenTheDayPage = lazy(() => import ('./pages/OpenTheDayPage'))
 const DashboardPage = lazy(() => import ('./pages/DashboardPage'))
 const ShiftNotesPage = lazy(() => import ('./pages/ShiftNotesPage'))
-const NewNotePage = lazy(() => import ('./pages/NewNotePage'))
+
 const TaskListPage = lazy(() => import ('./pages/TaskListPage'))
 const NotFoundPage = lazy(() => import ('./pages/NotFoundPage'))
 
@@ -39,7 +39,6 @@ function App() {
           <Route path='/dashboard' element={<Suspense fallback={<></>}><DashboardPage /></Suspense>} />
           <Route path='/openday'   element={<Suspense fallback={<></>}><OpenTheDayPage /></Suspense>} />
           <Route path='/notes'     element={<Suspense fallback={<></>}><ShiftNotesPage /></Suspense>} />
-          <Route path='/notes/new' element={<Suspense fallback={<></>}><NewNotePage /></Suspense>} />
           <Route path='/tasks'     element={<Suspense fallback={<></>}><TaskListPage /></Suspense>} />
           <Route path='*'          element={<Suspense fallback={<></>}><NotFoundPage /></Suspense>} />
 
