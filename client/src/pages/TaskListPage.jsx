@@ -20,6 +20,12 @@ function TaskListPage() {
     const [newTaskInitialText, setNewTaskInitialText] = useState('')
     const [isModalOpen, setIsModalOpen] = useState(false)
     const [isNewTaskModalOpen, setIsNewTaskModalOpen] = useState(false)
+
+     const handleToggleComplete = (id) => {
+        const task = tasks.find(t => t.id === id)
+        if (!task) return
+        editTask({ ...task, isComplete: !task.isComplete })
+    }
   
       const openEditModal = (task) => {
             setSelectedTask(task)
@@ -34,6 +40,7 @@ function TaskListPage() {
                 <TaskList
                 tasks={tasks}
                 layout={"detailed"}
+                onToggleComplete={handleToggleComplete}
                 /> 
 
                 <div>

@@ -5,7 +5,13 @@ export function useTasks() {
     const [tasks, setTasks] = useState([])
 
     useEffect(() => {
-        fetchTasks().then((res) => setTasks(res.data)).catch(console.error)
+        fetchTasks()
+        .then((res) => {
+            console.log('Fetched from API:', res.data[0])
+        console.log('Fetched tasks:', res.data) 
+        setTasks(res.data)
+        })
+        .catch(console.error)
     }, [])
 
     const addTask = async (newTask) => {

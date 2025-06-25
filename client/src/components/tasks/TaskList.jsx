@@ -1,15 +1,17 @@
 import TaskCard from './TaskCard'
 
 
-export default function TaskList({ tasks, onNoteClick, layout = 'summary'}) {
+export default function TaskList({ tasks, onToggleComplete, onEditClick, onDeleteClick, layout = 'summary'}) {
     return (
-        <div className="note-list">
+        <div className="task-list">
             {tasks.map(task => (
                 <TaskCard
                     key={task.id}
                     task={task}
                     layout={layout}
-                    onClick={onNoteClick}
+                    onToggleComplete={onToggleComplete}
+                    onEditClick={onEditClick}
+                    onDeleteClick={onDeleteClick}
                 />
             ))}
         </div>

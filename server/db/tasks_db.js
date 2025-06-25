@@ -17,7 +17,7 @@ const tasks_db = {
     description: 'Prepare the staff rota for the upcoming weekend.',
     assignedTo: 'Bob',
     dueTime: '2025-06-19T12:00:00Z',
-    isComplete: false,
+    isComplete: true,
     createdAt: '2025-06-18T10:00:00Z',
     priority: 'Medium',
     photoUrl: null
