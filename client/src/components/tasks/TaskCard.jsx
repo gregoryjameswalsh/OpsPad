@@ -21,7 +21,7 @@ console.log('TaskCard render:', task)
             <span className="note-title" onClick={() => onEditClick(task)}>{task.title}</span>        
             <span className="task-assigned-to">{task.assignedTo}</span>
             <span className="task-time">{time}</span>
-            <button>
+            <button onClick={() => onDeleteClick(task.id)}>
                 <i className="fa-solid fa-trash"></i>
             </button>
 

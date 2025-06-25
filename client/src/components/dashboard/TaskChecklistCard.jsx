@@ -20,6 +20,11 @@ export default function TaskChecklistCard() {
     console.log('Saving...', updatedTask)
   }
 
+  const handleDeleteClick = (id) => {
+    removeTask(id)
+    console.log('Deleting task with id:', id)
+  }
+
 // Need Modal Handling to go in here! if needed?
 
   return (
@@ -29,6 +34,8 @@ export default function TaskChecklistCard() {
         tasks={tasks}
         layout="summary"
         onToggleComplete={handleToggleComplete}
+
+        onDeleteClick={handleDeleteClick}
         />
     </div>
 
