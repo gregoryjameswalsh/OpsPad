@@ -14,7 +14,7 @@ console.log('TaskCard render:', task)
         <div className={`note-line ${layout}`}>
             <input 
                 type="checkbox" 
-                checked={!!task.isCcomplete}
+                checked={!!task.isComplete}
                 onChange={() => onToggleComplete(task.id)}
             />
 
