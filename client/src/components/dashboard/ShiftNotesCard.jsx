@@ -71,7 +71,6 @@ export default function ShiftNotesCard() {
                 setSelectedNote(null)
               }}
               onClose={() => {
-                console.log('Closing edit Modal')
                 setIsModalOpen(false)
                 setSelectedNote(null)
               }}

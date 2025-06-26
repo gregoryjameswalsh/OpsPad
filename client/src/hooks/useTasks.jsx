@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { fetchTasks, createTask, updateTask, deleteTaskById } from '../api/TasksApi'
+import NewTaskModal from '../components/modals/NewTaskModal'
 
 export function useTasks() {
     const [tasks, setTasks] = useState([])
@@ -19,6 +20,16 @@ export function useTasks() {
         setTasks((prev) => [...prev, res.data])
     }
 
+    const addTaskAtIndex = async (newTask, index) => {
+        const res = await createTask(newTask)
+        setTasks(prev => {
+            const copy = [...prev]
+            copy.splice(index, 0, res.data)
+            return copy
+        })
+        return res.data
+    }
+
     const editTask = async (updatedTask) => {
         await updateTask(updatedTask)
         setTasks((prev) => prev.map((n) => (n.id === updatedTask.id ? updatedTask : n)))
@@ -29,5 +40,5 @@ export function useTasks() {
         setTasks((prev) => prev.filter((n) => n.id !== id))
     }
 
-    return { tasks, addTask, editTask, removeTask }
+    return { tasks, addTask, addTaskAtIndex, editTask, removeTask }
 }

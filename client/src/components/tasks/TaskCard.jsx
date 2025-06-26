@@ -1,4 +1,5 @@
 import {FaCog, FaEllipsisH, FaTrash, FaPlus} from 'react-icons/fa'
+import { IoTrashOutline } from 'react-icons/io5'
 import '../../App.css'
 
 export default function TaskCard({
@@ -33,7 +34,7 @@ export default function TaskCard({
 
             <div className="task-actions">
             <FaEllipsisH onClick={() => onEditClick(task)} />
-            <FaTrash onClick={() => onDeleteClick(task.id)} />
+            <IoTrashOutline onClick={() => onDeleteClick(task.id)} />
             </div>
         </div>
     )
