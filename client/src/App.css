@@ -511,6 +511,39 @@ body {
   text-transform: uppercase;
 }
 
+
+.task-line {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 0.5rem;
+}
+
+/* Hide by default */
+.task-actions {
+  position: absolute;
+  right: 1rem;
+  display: flex;
+  gap: 0.5rem;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+/* Reveal on hover of the whole line */
+.task-line:hover .task-actions {
+  opacity: 1;
+}
+
+/* Optional: change cursor on actionable icons */
+.task-actions svg {
+  cursor: pointer;
+}
+
+
+
+
+
+
 .new-button {
   position: absolute;
   top: 1.5rem;

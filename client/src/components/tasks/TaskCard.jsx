@@ -1,8 +1,14 @@
+import {FaCog, FaEllipsisH, FaTrash, FaPlus} from 'react-icons/fa'
 import '../../App.css'
 
-export default function TaskCard({ task, onToggleComplete, onEditClick, onDeleteClick, layout = 'summary' }) {
+export default function TaskCard({
+    task,
+    onToggleComplete,
+    onEditClick,
+    onDeleteClick,
+}) {
     
-    const time = new Date(task.createdAt).toLocaleTimeString('en-GB', {
+    const time = new Date(task.dueTime).toLocaleTimeString('en-GB', {
         hour: '2-digit',
         minute: '2-digit',
         hour12: false,
@@ -12,27 +18,23 @@ export default function TaskCard({ task, onToggleComplete, onEditClick, onDelete
 
     return (
 
-        <div className={`note-line ${layout}`}>
+        <div className="task-line">
             <input 
                 type="checkbox" 
                 checked={!!task.isComplete}
                 onChange={() => onToggleComplete(task.id)}
             />
 
-            <span className="note-title" onClick={() => onEditClick(task)}>{task.title}</span>        
+            <span className="task-title" onClick={() => onEditClick(task)}>{task.title}</span>        
             <span className="task-assigned-to">{task.assignedTo}</span>
             <span className="task-time">{time}</span>
-            <button onClick={() => onDeleteClick(task.id)}>
-                <i className="fa-solid fa-trash"></i>
-            </button>
 
+            {/* Hover-only action items */}
 
-            {layout === 'detailed' && (
-                <div>
-                    <span>{task.authorId}</span>
-                <p>more detail goes here</p>
-                </div>
-            )}
+            <div className="task-actions">
+            <FaEllipsisH onClick={() => onEditClick(task)} />
+            <FaTrash onClick={() => onDeleteClick(task.id)} />
+            </div>
         </div>
     )
 }

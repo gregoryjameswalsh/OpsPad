@@ -21,12 +21,9 @@ return(
     <div className="modal-overlay">
         <div className="modal-edit-note">
             <h3>New Note</h3>
-            <textarea
-                placeholder="Write your note here..."
-                value={noteText}
-                onChange={(e) => setNoteText(e.target.value)}
-            />
+
             <div className="noteTag">
+                <div>{noteText}</div>
                 <label>Select a tag:</label> 
                 <select value={tag} onChange={(e) => setTag(e.target.value)}>
                     <option value="">--Select--</option>
