@@ -7,6 +7,7 @@ export default function TaskCard({ task, onToggleComplete, onEditClick, onDelete
     })
 
     // *** NEED TO UPDATE CSS - remove note / change to task || OR refactor CSS?
+    // *** Need to popup to confirm delete
 
 console.log('TaskCard render:', task)
 
