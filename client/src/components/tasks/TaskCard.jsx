@@ -1,5 +1,7 @@
-export default function TaskCard({ task, onToggleComplete, onEditClick, onDeleteClick, layout = 'summary' }) {
+import '../../App.css'
 
+export default function TaskCard({ task, onToggleComplete, onEditClick, onDeleteClick, layout = 'summary' }) {
+    
     const time = new Date(task.createdAt).toLocaleTimeString('en-GB', {
         hour: '2-digit',
         minute: '2-digit',
@@ -7,11 +9,9 @@ export default function TaskCard({ task, onToggleComplete, onEditClick, onDelete
     })
 
     // *** NEED TO UPDATE CSS - remove note / change to task || OR refactor CSS?
-    // *** Need to popup to confirm delete
-
-console.log('TaskCard render:', task)
 
     return (
+
         <div className={`note-line ${layout}`}>
             <input 
                 type="checkbox" 
@@ -36,3 +36,4 @@ console.log('TaskCard render:', task)
         </div>
     )
 }
+
