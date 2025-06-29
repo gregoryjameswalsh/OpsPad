@@ -25,23 +25,21 @@ export default function TaskList({
     return (
         <div className="task-list">
 
-            {/* + rendered above first task */}
-            <AddButton onAdd={() => onAddClick(0)} position="above" />
-
             {tasks.map((task, i) => (
-                <React.Fragment key={task.id}>
-                <TaskCard
+                <div key={task.id} className="task-line">
+                <div>{/* + rendered above first task */}
+                    <AddButton onAdd={() => onAddClick(i)} position="above" />
+                    <TaskCard
                     task={task}
                     onToggleComplete={onToggleComplete}
                     onEditClick={onEditClick}
                     onDeleteClick={onDeleteClick}
-                />
+                    />
                 {/* + between items and below the last */}
-                <AddButton
-                    onAdd={() => onAddClick(i + 1)}
-                    position="below"
-                />
-            </React.Fragment>
+                    <AddButton onAdd={() => onAddClick(i + 1)} position="below" />
+            </div>
+            </div>
+
             ))}
         </div>
     )  

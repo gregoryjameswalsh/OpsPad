@@ -1,7 +1,9 @@
 import { Suspense, lazy, useState}  from 'react'
 import {BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
 
-import './App.css'
+import './styles/app.css'
+import './styles/Modal.css'
+import './styles/tasks.css'
 
 import LandingLayout from './components/layouts/LandingLayout'
 import AppLayout from './components/layouts/AppLayout';

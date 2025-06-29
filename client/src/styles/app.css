@@ -1,0 +1,760 @@
+/* 1. CSS Reset & Box-Sizing */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body, #root {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+
+/* 2. CSS for colour scheme, typography, and layout */
+:root {
+  /* === BRAND PALETTE === */
+
+  --color-primary: #3a606e;   /* Paynes Gray */
+  --color-secondary: #607b7d; /* Slate Gray */ 
+  --color-bg: #f5f5f5;
+  --color-surface: #ffffff;   /* White */
+  --color-border: #e0e0e0;
+  --color-text: #1c1c1c;      /* Charcoal */
+
+
+  /* === STATUS COLOURS == */
+  --color-success: #28a745;
+  --color-warning: #ffc107;
+  --color-alert: #dc3545;
+  --color-info: #17a2b8;
+
+  --color-muted: #757575;
+  --color-button-hover: #32525f; /* Slightly darker Paynes Gray */
+
+   /* === UI SEMANTIC === */
+   --color-surface: var(--color-bg);
+   --color-border: var(--color-secondary);
+   --color-heading: var(--color-text);
+
+  /* typography */
+  --font-family: -apple-system, BlinkMacSystemFont, Lato, Roboto, "Segoe UI",  "Helvetica Neue", Arial, sans-serif;
+  --font-size-base: 16px;
+
+
+/* <weight>: Use a value from 100 to 900 */
+/* <uniquifier>: Use a unique and descriptive class name */
+
+.roboto-900 {
+  font-family: "Roboto", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 900;
+  font-style: normal;
+  font-variation-settings:
+    "wdth" 100;
+}
+
+.lato-black {
+  font-family: "Lato", sans-serif;
+  font-weight: 900;
+  font-style: normal;
+}
+
+
+  /* spacing unit */
+  --gap: 1.5rem;
+  --space: 1.5rem;
+  --space-sml: 0.75rem;
+  --radius: 1.5rem;
+  --radius-lg: 1.5rem;
+
+  --nav-height: 4rem;
+}
+
+/* 3. Base HTML & Body */
+html {
+  font-size: var(--font-size-base);
+  height: 100%;
+}
+body {
+  font-family: var(--font-family);
+  color: var(--color-text-primary);
+  background-color: white;
+  line-height: 1.6;
+  padding-top: var(--nav-height);
+  padding-bottom: var(--nav-height)
+}
+/* Layouts */
+.landing-layout {
+  display:grid;
+}
+.app-layout {
+  display: grid;
+
+  border-color: #2e7d32;
+}
+.app-layout h1 {
+  font-size: 3rem;
+}
+
+
+
+/* 4. #root as a Centered, Responsive Container */
+/*    - iPad-first width: 768px max
+      - full-height flex so pages can stretch
+      - auto-margin for horizontal centering */
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  width: 100%;
+  /* max-width: 768px; /* iPad-first */
+  margin: auto;
+  padding: 0;
+  overflow-x: hidden;
+ 
+}
+
+
+
+/* 5.Breakpoint for different screens*/
+/*   Bump container width at a desktop size */
+@media (min-width: 1024px) {
+  #root {
+    max-width: 1024px; /* Desktop */
+  }
+
+  .hero {
+    padding: 6rem var(--gap);
+  }
+  .hero h1 {
+    font-size: 3.5rem;
+  }
+  .features {
+    grid-template-columns: repeat(2, minmax(0, 400px));
+    justify-content: center;    
+  }
+}
+
+
+
+/* 6. Utility Helpers */
+/*  __Navigation Bar__    */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: var(--nav-height);
+  z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--clr-bg-muted);
+  padding: 0 var(--gap);
+}
+.navbar .logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--clr-heading);
+  text-decoration: none;
+}
+.nav-links a {
+  margin-left: var(--gap);
+  text-decoration: none;
+  color: var(--clr-heading);
+}
+
+/* Hero Section */
+.hero {
+  text-align: center;
+  padding: calc(var(--gap) * 2) var(--gap);
+  background-color: var(--clr-bg-light);
+}
+.hero h1 {
+  font-size: 2.5rem;
+  color: var(--clr-heading);
+  margin-bottom: 0.5rem;
+}
+.hero .tagline {
+  font-size: 1.25rem;
+  margin-bottom: 0.25rem;
+  color: var(--clr-text-heading);
+}
+.hero .subtag {
+  margin-bottom: var(--gap);
+  color: var(--clr-text-secondary);
+}
+
+/* Feature Section */
+.features {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--gap);
+  padding: var(--gap);
+  background-color: var(--clr-bg-muted);
+}
+.card {
+  background-color: white;
+  border-radius: var(--radius);
+  padding: var(--gap);
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+.card .icon {
+  display: block;
+  background-color: red;
+  width: 3rem;
+  height: 3rem;
+  margin: 0 auto var(--gap);
+  fill: var(--clr-primary);
+}
+.card h3 {
+  font-size: 1.125rem;
+  color: var(--clr-text-primary);
+  margin-bottom: 0.5rem;
+}
+.card p {
+  color: var(--clr-text-secondary);
+  font-size: 0.95rem;;
+}
+
+/* App Header that sits there across the top of the app */
+.app-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: var(--nav-height);
+  z-index: 1000;
+  display: flex;
+  
+  align-items: center;
+  background-color: white;
+  padding: 0 var(--gap);
+  gap: var(--space-sml);
+}
+
+.app-header .logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(black);
+  
+}
+.app-header .site-name {
+  font-size: 1rem;
+  color: #555;
+  font-weight: bold;
+  align-self: left;
+}
+.app-header .icons {
+  font-size: 2.5rem;
+  color: var(--color-primary);
+}
+.app-header-right {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: var(--gap);
+}
+
+.app-footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: var(--nav-height);
+  z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  
+  background-color: white;
+  padding: 0 var(--gap);
+  border-top: 1px solid #e0e0e0;
+  box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.1);
+ }
+.footer-icons {
+  display: flex;
+  gap: 2rem;
+}
+.footer-icon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 0.9rem;
+  color: var(--color-text-primary);
+  text-decoration: none;
+   
+}
+.footer-icon svg {
+  font-size: 1.25rem;
+  margin-bottom: 0.25rem;
+}
+.app-footer-right svg {
+  font-size: 1.5rem;
+  color: var(--clr-text-primary);
+}
+
+
+
+
+
+/* Buttons */
+.btn-primary {
+  display: inline-block;
+  background-color: var(--color-primary);
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--radius);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.btn-primary:hover {
+  background-color: var(--color-button-hover);
+}
+.btn-stretched {
+  display: block;
+  width: 100%;
+  background-color: var(--color-primary);
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 10px;
+  text-decoration: none;
+  text-align: center;
+  font-weight: 600;
+  margin: var(--space) 0;
+;
+}
+.btn-stretched:hover {
+  background-color: var(--color-button-hover);
+}
+
+
+.add-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0.25rem 0;
+  opacity: 0.5;
+  cursor: pointer;
+}
+.add-button:hover {
+  opacity: 1;
+}
+
+
+
+
+/* Container & spacing */
+/*    Full-width section wrapper */
+
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  overflow-x: hidden;
+  
+}
+
+
+
+/* 8 Pages Specific Styling */
+/*   _Dashboard Page_ */
+
+
+.dashboard-page {
+  
+  display: flex;
+  
+  flex-direction: column;
+  width: 100%;
+  max-width: 100%;;
+  padding: 0 var(--space) var(--nav-height);
+  background-color: white;
+  overflow-x: hidden;
+}
+.dashboard-summary {
+  
+  font-family: sans-serif;
+  position: relative;
+  background: white;
+}
+.dashboard-flex-container {
+  display: flex;
+  flex-direction: row;
+  gap: var(--gap);
+  width: 100%;
+}
+
+.checklist-section {
+  flex: 1;
+  border:#ddd solid 1px;
+  border-radius: 8px;
+  padding: 1rem;
+ 
+}
+
+.checklist-section h2,
+.notes-section h2,
+.next-event h3 {
+  font-size: 1.1rem;
+  color: #222;
+  margin-bottom: 0.5rem;
+}
+
+.checklist {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.5rem 0;
+}
+
+.checklist li {
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1rem;
+}
+
+.notes-section {
+  flex: 1;
+  position: relative;
+  border:#ddd solid 1px;
+  border-radius: 8px;
+  padding: 1rem;
+    width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+  
+}
+
+.note-input {
+  width: 100%;
+  padding: 0.75rem;
+  margin-bottom: 1rem;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  font-size: 1rem;
+}
+
+.note {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+ width: 100%;
+  
+  margin-bottom: 0.75rem;
+  flex-wrap: wrap;
+}
+.note-line {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  padding: 0.5rem 0;
+  cursor: pointer;
+  min-width: 0;
+  overflow: hidden;
+  min-width: 0;
+  word-break: break-all;
+  overflow-wrap: anywhere;
+}
+
+.tag {
+  background: #eee;
+  padding: 0.2rem 0.6rem;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-left: 0.5rem;
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+.tag.incident {
+  background-color: #ffe0e0;
+  color: #b00020;
+}
+
+.tag.maintenance {
+  background-color: #e0e7ff;
+  color: #1e3a8a;
+}
+
+.note-time {
+  flex-shrink: 0;
+  white-space: nowrap;
+  font-size: 0.85rem;
+  color: #666;
+  
+}
+
+.note-text {
+    white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex-grow: 1;
+  flex-shrink: 1;
+  min-width: 0;
+  font-size: 0.95rem;
+  margin-left: 0.5rem;
+}
+
+.next-event {
+  background-color: #f8f8f8;
+  border-radius: 8px;
+  padding: 1rem;
+  margin-top: 1rem;
+}
+
+.next-event h3 {
+  font-size: 0.85rem;
+  color: #666;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+}
+
+
+.task-line {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 0.5rem;
+}
+
+/* Hide by default */
+.task-actions {
+  position: absolute;
+  right: 1rem;
+  display: flex;
+  gap: 0.5rem;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+/* Reveal on hover of the whole line */
+.task-line:hover .task-actions {
+  opacity: 1;
+}
+
+/* Optional: change cursor on actionable icons */
+.task-actions svg {
+  cursor: pointer;
+}
+
+
+
+
+
+
+.new-button {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  background-color: var(--color-primary);
+  color: white;
+  font-size: 2rem;
+  width: 2.25rem;
+  height: 2.25rem;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+}
+.new-button:hover {
+  background-color: var(--color-button-hover);
+}
+
+
+/* ==|| Modal Styling ||== */
+/* modal background */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+/* white modal box */
+.modal-content {
+  background: #fff;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 400px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  overflow: hidden;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid #eee;
+}
+.modal-header h2 {
+  margin: 0;
+  font-size: 1.25rem;
+}
+.close-button {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #666
+}
+
+.modal-form {
+  padding: 1rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.modal-form label {
+  display: flex;
+  flex-direction: column;
+  font-size: 0.9rem;
+  color: #444;
+}
+.modal-form input,
+.modal-form select,
+.modal-form textarea {
+  margin-top: 0.3rem;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  padding: 1rem 1.25rem;
+  border-top: 1px solid #eee;
+}
+.modal-footer button {
+  padding: 0.5rem 0.75rem;
+  border: none;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+.save-button {
+  background: #28a745;
+  color: #fff;
+}
+.save-button:disabled {
+  background-color: #ccc;
+  color: #666;
+  cursor: not-allowed;
+}
+.cancel-button {
+  background: #6c757d;
+  color: #fff;
+}
+.delete-button {
+  background-color: #dc3545;
+  color: #fff;
+  margin-right: auto;
+}
+
+/* new note modal */
+
+.modal-edit-note {
+  background: #fff;
+  padding: 2rem;
+  border-radius: 12px;
+  max-width: 400PX;
+  Width: 100%;
+}
+ .modal-edit-note textarea {
+  width: 100%;
+  height: 100px;
+  margin-top: 1rem;
+ }
+
+ .tag-selector {
+  margin-top: 1rem;
+ }
+
+ .modal-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 1rem;;
+ }
+
+
+/* ==|| MEDIA QUERIES SECTION ||== */
+/*    Responsive Design */
+
+/* All css above this point should be mobile-first */
+
+
+/*  Pull in size for mobile */
+@media (max-width: 768px) {
+  .features {
+    grid-template-columns: 1fr;
+  }
+  .hero h1 {
+    font-size: 2rem;
+  }
+  .dashboard-flex-container {
+    flex-direction: column;
+  ;
+  }
+}
+
+
+
+
+
+
+
+
+/* zzOld CSS for reference at the moment
+
+
+
+
+
+.dashboard-grid {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+
+.task-checklist-card ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.task-checklist-card li {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+}
+.task-checklist-card li input[type="checkbox"] {
+  margin-right: 12px;
+}
+.task-checklist-card .completed {
+  text-decoration: line-through;
+  color: #6b7280;
+} */

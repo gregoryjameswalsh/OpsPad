@@ -14,9 +14,11 @@ export default function TaskChecklistCard() {
   const { tasks, addTask, addTaskAtIndex, editTask, removeTask } = useTasks()
   const [selectedTask, setSelectedTask] = useState(null)
   const [showDeleteModal, setShowDeleteModal] = useState(false)
+  const [isDeleteFromEdit, setIsDeleteFromEdit] = useState(false)
   const [showEditModal, setShowEditModal] = useState(false)
   const [showNewModal, setShowNewModal] = useState(false)
   const [insertIndex, setInsertIndex] = useState(null)
+  
 
   // Function to handle toggling task completion
   // This function finds the task by ID, toggles its isComplete status,
@@ -67,12 +69,19 @@ export default function TaskChecklistCard() {
       removeTask(selectedTask.id)
       setShowDeleteModal(false)
       setSelectedTask(null)
+
+      // If the delete was initiated from the edit modal, close it as well
+      if (isDeleteFromEdit) {
+        setShowEditModal(false)
+        setIsDeleteFromEdit(false)}
       }
     }
 
     const handleCancelDelete = () => {
       setShowDeleteModal(false)
     }
+
+   
 
   // Render the task list and delete confirmation modal
   // Note: The task list is passed the tasks from the useTasks hook
@@ -102,6 +111,11 @@ export default function TaskChecklistCard() {
       onClose={() => setShowEditModal(false)}
       task={selectedTask}
       onSave={editTask}
+      onRequestDelete={(task) => {
+        setSelectedTask(task)
+        setIsDeleteFromEdit(true)
+        setShowDeleteModal(true)
+      }}
     />
   )}
 

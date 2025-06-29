@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import {FaPlus } from 'react-icons/fa';
+import ModalWrapper from './ModalWrapper';
 import '../../App.css'
+import '../../styles/Modal.css';
 
 export default function NewTaskModal({
     initialText = '',
@@ -31,14 +33,9 @@ export default function NewTaskModal({
     }
 
 return(
-
-    <div className="modal-overlay">
-        <div className="modal-content">
-            <header className="modal-header">
+<>
+<ModalWrapper isOpen={true} onClose={onClose}>
             <h3>New Task</h3>
-            <button onClick={onClose} className="close-button">x</button>
-            </header>
-
             <form className="modal-form" onSubmit={handleSave}>
                 <label>Task:
                     <input
@@ -47,6 +44,13 @@ return(
                         value={title}
                         onChange={e => setTitle(e.target.value)}
                         required
+                        style={{
+              width: '100%',
+              marginTop: '0.5rem',
+              padding: '0.5rem',
+              borderRadius: '8px',
+              border: '1px solid #607B7D',
+            }}
                     />
                 </label>
 
@@ -56,6 +60,13 @@ return(
                         value={priority} 
                         onChange={e => setPriority(e.target.value)}
                         required
+                                    style={{
+              width: '100%',
+              marginTop: '0.5rem',
+              padding: '0.5rem',
+              borderRadius: '8px',
+              border: '1px solid #607B7D',
+            }}
                     >
                         <option value="">--Select--</option>
                         <option value="Escalated">Escalated</option>
@@ -82,7 +93,8 @@ return(
                     </button>
                 </footer>
             </form>
-        </div>
-    </div>
+            </ModalWrapper>
+        </>
+    
     )
 }

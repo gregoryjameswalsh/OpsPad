@@ -35,12 +35,16 @@ export default function DashboardPage() {
 
         <section className="dashboard-summary">
           <div className="dashboard-flex-container">
-            <ShiftNotesCard />
+            <ShiftNotesCard /> 
           <div className="checklist-section">
             <h2>Today's Tasks</h2>
-              <div className="checklist-section">
-                x% of checklists complete
-              </div>
+              
+               {/* 
+<div className="checklist-section">
+               x% of checklists complete 
+               </div>
+               */}
+              
             
               <div className="checklist">
               <TaskChecklistCard

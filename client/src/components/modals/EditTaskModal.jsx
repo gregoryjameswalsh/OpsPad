@@ -1,16 +1,19 @@
 import React, { useState, useEffect } from 'react'
 
+import ModalWrapper from './ModalWrapper'
 import '../../App.css'
+import '../../styles/Modal.css'
 
 
 
 
 
 
-function EditTaskModal({ task, onSave, onDelete, onClose }) {
+function EditTaskModal({ task, onSave, onRequestDelete, onClose }) {
 //copy the passed-in note to local state so we can edit it in a controlled input
     const [formState, setFormState] = useState({
         id: task.id,
+        title: task.title,
         assignedTo: task.assignedTo,
         createdAt: task.createdAt,
         priority: task.priority,
@@ -20,6 +23,7 @@ function EditTaskModal({ task, onSave, onDelete, onClose }) {
     useEffect(() => {
         setFormState({
             id: task.id,
+            title: task.title,
             assignedTo: task.assignedTo,
             createdAt: task.createdAt,
             priority: task.priority,
@@ -32,58 +36,61 @@ function handleChange(e) {
 }
 
 function handleSave(e) {
-    e.preventDefault();
+    e.preventDefault()
     // optionally validate here at some point...
-    onSave(formState);
+    onSave(formState)
+    onClose()
 }
 
 function handleDelete(e) {
     e.preventDefault();
-    if (window.confirm("Are you sure you want to delete this task? This cannot be undone."))
-    {
-        onDelete(task.id)
-    }
+    onRequestDelete(task)
 }
 
 
 return (
-    <div className="modal-overlay">
-        <div className="modal-content">
-            <header className="modal-header">
-                <h2>Edit Task</h2>
-                <button className="close-button" onClick={onClose}>
-                    x
-                </button>
-            </header>
+    <>
+    <ModalWrapper isOpen={true} onClose={onClose}>
+        <h2>Edit Task</h2>
+        <form className="modal-form" onSubmit={handleSave}>
+            <label>
+                Task:
+                <textarea
+                    name="title"
+                    value={formState.title}
+                    onChange={handleChange}
+                    rows={4}
+                    required
+                />
+            </label>
 
-            <form className="modal-form" onSubmit={handleSave}>
-                <label>
-                    Priority:
-                    <select
-                        name="taskPriority"
-                        value={formState.taskPriority}
-                        onChange={handleChange}
-                        required
-                    >   
-                        <option value="Escalated">Escalated</option>
-                        <option value="High">High</option>
-                        <option value="Medium">Medium</option>
-                        <option value="Low">Low</option>
-                    </select>
-                </label>
+            <label>
+                Priority:
+                <select
+                    name="taskPriority"
+                    value={formState.priority}
+                    onChange={handleChange}
+                    required
+                >   
+                    <option value="Escalated">Escalated</option>
+                    <option value="High">High</option>
+                    <option value="Medium">Medium</option>
+                    <option value="Low">Low</option>
+                </select>
+            </label>
 
-                <label>
-                    Owner:
-                    <textarea
-                        name="assignedTo"
-                        value={formState.tasks}
-                        onChange={handleChange}
-                        rows={4}
-                        required
-                        />
-                </label>
+            <label>
+                Owner:
+                <textarea
+                    name="assignedTo"
+                    value={formState.assignedTo}
+                    onChange={handleChange}
+                    rows={4}
+                    required
+                />
+            </label>
 
-                <footer className="modal-footer">
+                <div className="modal-footer">
                     <button
                     type="button"
                     className="delete-button"
@@ -103,12 +110,11 @@ return (
                     className="save-button"
                     >Save
                     </button>
-                    
-                    
-                    </footer>    
+
+                </div>
             </form>
-        </div>
-    </div>
+    </ModalWrapper>
+    </>
     )
 }
 

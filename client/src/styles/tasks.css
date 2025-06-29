@@ -1,0 +1,100 @@
+.dashboard-page .task-list {
+  background: #ffff;                 /* white card background */
+  border-radius: 8px;                  /* rounded corners */
+  box-shadow:
+    0 2px 4px rgba(0, 0, 0, 0.06),     /* soft main shadow */
+    0 1px 2px rgba(0, 0, 0, 0.04);     /* subtle fill shadow */
+  overflow: hidden;                    /* clip row hover backgrounds */
+  margin: 1rem;                        /* outer breathing room */
+}
+
+/* keep your existing separators */
+.dashboard-page .task-line {
+  position: relative;
+  padding: 0.25rem 1rem;
+  min-height: 2rem;
+  line-height: 1.5rem;
+  border-bottom: 1px solid #E0E0E0;
+  background: #FFF;                    /* match the card background */
+  transition: background 0.2s ease;
+}
+.dashboard-page .task-line:last-child {
+  border-bottom: none;
+}
+
+/* hover state on each row */
+.dashboard-page .task-line:hover {
+  background: #F5F5F5;
+}
+
+/* reveal action icons on hover */
+.dashboard .task-actions {
+  position: absolute;
+  right: 1rem;
+  display: flex;
+  gap: 0.5rem;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+.dashboard-page .task-line:hover .task-actions {
+  opacity: 1;
+}
+.dashboard .task-actions svg:hover {
+  color: #3A606E;
+}
+
+
+/* 2. Hide all AddButtons by default */
+.task-list .add-button {
+  position: absolute;
+  left: 0.5rem;
+  opacity: 0;
+  height: 0;
+  overflow: hidden;
+  transition: opacity 0.2s ease, height 0.2s ease;
+}
+
+/* 3. On hover of the container or specific row, reveal the relevant + */
+.task-list:hover > .add-button,            /* hovering entire list shows top+bottom */
+.task-line:hover + .add-button,            /* hovering a row shows button below */
+.add-button + .task-line:hover ~ .add-button, /* if you hover row N, show the button above row N+1 */
+.dashboard .task-list > .add-button:hover {  /* and allow hovering the button itself */
+  opacity: 1;
+  height: auto;                            /* let it size itself */
+}
+
+/* 4. Position the buttons exactly above/below each row */
+.add-button.add-above {
+  top: -0.5rem;
+  margin-top: -0.5rem;  /* overlap slightly into the previous area */
+}
+.add-button.add-below {
+  bottom: -0.5rem;
+  margin-bottom: -0.5rem;
+}
+
+/* 5. Style the + itself smaller */
+.add-button svg {
+  color: #607B7D;
+  font-size: 0.75rem;
+}
+.add-button:hover svg {
+  color: #3A606E;
+}
+
+/* Reveal on hover of the line */
+.task-line:hover .add-button {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Tweak your icon styling */
+.add-button svg {
+  font-size: 1rem;
+  color: rgba(96,123,125,0.6);
+  transition: color 0.2s ease;
+}
+.task-line:hover .add-button svg {
+  color: #3A606E;
+  transform: scale(1.1);
+}
