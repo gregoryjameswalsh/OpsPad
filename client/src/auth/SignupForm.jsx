@@ -25,7 +25,7 @@ export default function SignupForm() {
     }
   }
 
-  //test
+  //test 2
   return (
     <form onSubmit={handleSignup} className="max-w-md mx-auto p-4 bg-white shadow rounded">
       <h2 className="text-xl font-semibold mb-4">Sign Up</h2>
