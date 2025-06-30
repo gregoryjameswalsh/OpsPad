@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { supabase } from '../../lib/supabaseClient'
 import axios from 'axios'
 
 import '../../App.css'
@@ -64,6 +65,13 @@ const AppHeader = () => {
                     : null;
     const altText = data?.current?.condition?.text || "Weather Icon";
 
+  // Logout handler
+  const handleLogout = async () => {
+    await supabase.auth.signOut()
+    navigate('/login')
+  }
+
+
 
     return (
         <nav className="app-header">
@@ -89,6 +97,13 @@ const AppHeader = () => {
                 
                 
                 <i className="fa-solid fa-circle-user icons"></i>
+
+                            <button onClick={handleLogout} className="logout-btn">
+          Log out
+        </button>
+
+
+                
             </div>
 
         </nav>

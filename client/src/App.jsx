@@ -5,9 +5,12 @@ import './styles/app.css'
 import './styles/Modal.css'
 import './styles/tasks.css'
 
+import PrivateRoute from './components/PrivateRoute'
 import LandingLayout from './components/layouts/LandingLayout'
 import AppLayout from './components/layouts/AppLayout';
 
+const SignupPage = lazy(() => import('./pages/SignupPage'))
+const LoginPage = lazy(() => import('./pages/LoginPage'))
 
 const LandingPage = lazy(() => import ('./pages/LandingPage'))
 const OpenTheDayPage = lazy(() => import ('./pages/OpenTheDayPage'))
@@ -30,6 +33,11 @@ function App() {
       <div className="App">
         <Router>
         <Routes>
+
+        {/* Standalone Auth Pages */}
+          <Route path="/signup" element={<Suspense fallback={<></>}><SignupPage /></Suspense>} />
+          <Route path="/login"  element={<Suspense fallback={<></>}><LoginPage /></Suspense>} />
+
           {/* Landing Page Layout */}
           <Route element={<LandingLayout />}>
           <Route path="/" element={<LandingPage />} />
@@ -38,10 +46,10 @@ function App() {
           {/* In-App Layout with Bottom Nav */}
           <Route element={<AppLayout />}>
           <Route path='/landing'          element={<Suspense fallback={<></>}><LandingPage /></Suspense>} />
-          <Route path='/dashboard' element={<Suspense fallback={<></>}><DashboardPage /></Suspense>} />
-          <Route path='/openday'   element={<Suspense fallback={<></>}><OpenTheDayPage /></Suspense>} />
-          <Route path='/notes'     element={<Suspense fallback={<></>}><ShiftNotesPage /></Suspense>} />
-          <Route path='/tasks'     element={<Suspense fallback={<></>}><TaskListPage /></Suspense>} />
+          <Route path='/dashboard' element={<PrivateRoute><Suspense fallback={<></>}><DashboardPage /></Suspense></PrivateRoute>} />
+          <Route path='/openday'   element={<PrivateRoute><Suspense fallback={<></>}><OpenTheDayPage /></Suspense></PrivateRoute>} />
+          <Route path='/notes'     element={<PrivateRoute><Suspense fallback={<></>}><ShiftNotesPage /></Suspense></PrivateRoute>} />
+          <Route path='/tasks'     element={<PrivateRoute><Suspense fallback={<></>}><TaskListPage /></Suspense></PrivateRoute>} />
           <Route path='*'          element={<Suspense fallback={<></>}><NotFoundPage /></Suspense>} />
 
           </Route>
