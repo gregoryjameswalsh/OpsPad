@@ -1,60 +1,48 @@
-import users_db from '../db/users_db.js'
+import supabase from '../db/supabaseClient.js'
 
-export const getItem = id => {
-    try{
-        const user=users_db?.users?.filter( users => user?.id === id) [0]
-        return user
-
-    } catch (err) {
-        console.log('Error', err)
-    }
+export async function getUserFromToken(req) {
+    const token = req.headers.authorization?.replace('Bearer ', '')
+    const { data: {user }, error } = await supabase.auth.getUser(token)
+    if (error) throw error
+    return user
 }
 
-export const listItems = () => {
-    try {
-        return users_db?.users
-
-    } catch (err) {
-        console.log('Error', err)
-    }
+export async function getUserById(id) {
+    const { data } = await supabase.from('users').select('id').eq('id', id).maybeSingle()
+        return data
 }
 
-export const editItem = (id, data) => {
-    try {
-        const index = users_db.users.findIndex(user => user.id === id)
-
-        if (index === -1) throw new Error('user not found')
-            else {
-        users_db.users[index] = data
-        return users_db.users[index]
-            }
-        } catch (err) {
-            console.log('Error', err)
-
-        }
-    }
-
-
-export const addItem = data => {
-    try {
-        const newUser = { id: users_db.users.length + 1, ...data }
-        users_db.users.push(newUser)
-        return newUser
-    } catch (err) {
-        console.log('Error', err)
-    }
+export async function createCompany(name) {
+    const { data, error } = await supabase
+        .from('company')
+        .insert({ name })
+        .select()
+        .single()
+    if (error) throw error
+    return data
 }
 
-export const deleteItem = id => {
-    try {
-        // delete user from db
-        const index = users_db.users.findIndex(user => user.id === id)
-        if (index === -1) throw new Error('user not found')
-            else {
-        users_db.users.splice(index, 1)
-        return users_db.users
-            }
-    } catch (error) {
-    }
+export async function createSite(name, companyId) {
+    const { data, error } = await supabase
+        .from('site')
+        .insert({ name, company_id: companyId })
+        .select()
+        .single()
+    if (error) throw error
+    return data
+}
 
+export async function getRoleByName(name) {
+    const { data, error } = await supabase
+        .from('role')
+        .select('id')
+        .eq('name', name)
+        .single()
+    if (error) throw error
+    return data
+}
+
+export async function createUser(user) {
+    const { error } = await supabase.from('users').insert(user)
+    if (error) throw error
 }

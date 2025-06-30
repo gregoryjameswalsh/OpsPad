@@ -1,51 +1,40 @@
-import { getItem, listItems, editItem, addItem, deleteItem } from '../models/users.models.js';
+import {
+    getUserFromToken,
+    createCompany,
+    createSite,
+    createUser,
+    getUserById,
+    getRoleByName
+} from '../models/users.models.js'
 
-export const getUser = (req, res) => {
+export async function onboardUser(req, res) {
     try {
-        const resp = getItem(parseInt(req.params.id))
-        res.status(200).json(resp)
+        const { name, companyName, siteName } = req.body
 
-    }   catch (err) {
-        res.status(500).send(err)
-    }
-}
+        const user = await getUserFromToken(req)
+        if (!user) return res.status(401).jason({ error: 'Unauthenticated' })
 
-export const listUsers = (req, res) => {
-    try {
-        const resp = listItems()
-        res.status(200).json(resp)
+        const existingUser = await getUserById(user.id)
+        if (existingUser) return res.status(200).json({ message: 'Already onboarded' })
 
+        const company = await createCompany(companyName)
+        const site = await createSite(siteName, company.id)
+        const role = await getRoleByName('Adminstrator')
+
+        await createUser({
+            id: user.id,
+            name,
+            company_id: company.id,
+            site_id: site.id,
+            role_id: role.id,
+        })
+
+        return res.status(200).json({ message: 'Onboarding successful' })
     } catch (err) {
-        res.status(500).send(err)
+        console.error(err)
+        res.status(500).json({ error: err.message })
     }
+
 }
 
-export const editUser = (req, res) => {
-    try {
-        const resp = editItem(parseInt(req.params.id), req.body)
-        res.status(200).json(resp)
 
-    } catch (err) {
-        res.status(500).send(err)
-    }
-}
-
-export const addUser = (req, res) => {
-    try {
-        const resp = addItem(req.body)
-        res.status(200).json(resp)
-        
-    } catch (err) {
-        res.status(500).send(err)
-    }
-}
-
-export const deleteUser = (req, res) => {
-    try {
-        const resp = deleteItem(parseInt(req.params.id))
-        res.status(200).json(resp)
-
-    } catch (err) {
-        res.status(500).send(err)
-    }
-}
