@@ -6,6 +6,7 @@ import cors from 'cors';
 // import { notesRoutes, tasksRoutes, usersRoutes, onboardUserRoutes } from './routes/index.js'
 
 import { notesRoutes, tasksRoutes, onboardUserRoutes } from './routes/index.js'
+import profileRoutes from './routes/profile.routes.js';
 
 // Need to refactor at some point with index.js in each folder //
 // Like the below... //
@@ -26,5 +27,7 @@ app.use('/tasks', tasksRoutes)
 app.use('/notes', notesRoutes)
 //app.use('/users', usersRoutes)
 app.use('/api/onboard-user', onboardUserRoutes)
+app.use('/api/check-onboarding-status', onboardUserRoutes) // This route is for checking onboarding status, it should be handled in the onboardUserRoutes
+app.use('/api/profile', profileRoutes)
 
 export default app;

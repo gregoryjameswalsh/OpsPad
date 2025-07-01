@@ -1,7 +1,7 @@
 // /client/src/auth/LoginForm.jsx
 import { useState } from 'react'
-import { supabase } from '../lib/supabaseClient'
 import { useNavigate } from 'react-router-dom'
+import { supabase } from '../lib/supabaseClient'
 
 export default function LoginForm() {
   const [email, setEmail] = useState('')
@@ -9,21 +9,31 @@ export default function LoginForm() {
   const [error, setError] = useState('')
   const navigate = useNavigate()
 
-  const handleLogin = async (e) => {
-    e.preventDefault()
-    setError('')
 
-    const { data, error } = await supabase.auth.signInWithPassword({
+const handleLogin = async (e) => {
+  e.preventDefault()
+  setError('')
+
+  try {
+    // Login with Supabase
+    const { data, error: loginError } = await supabase.auth.signInWithPassword({
       email,
       password,
     })
 
-    if (error) {
-      setError(error.message)
-    } else {
-      navigate('/dashboard')
+    if (loginError || !data.session) {
+      setError(loginError?.message || 'Login failed')
+      return
     }
-  }
+
+    navigate('/gate')
+
+} catch (err) {
+  console.error('Login error:', err)
+  setError('Something went wrong. Please try again. ID10 T error.')
+}
+
+}
 
   return (
     <form onSubmit={handleLogin} className="max-w-md mx-auto p-4 bg-white shadow rounded">
