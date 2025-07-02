@@ -1,51 +1,80 @@
-import { getItem, listItems, editItem, addItem, deleteItem } from '../models/users.models.js';
+// File: server/controllers/users.controllers.js
 
-export const getUser = (req, res) => {
-    try {
-        const resp = getItem(parseInt(req.params.id))
-        res.status(200).json(resp)
+import { supabase} from '../db/supabaseClient.js'
+import {
+    getUserFromToken,
+    createCompany,
+    createSite,
+    createUser,
+    getUserById,
+    getRoleByName
+} from '../models/users.models.js'
 
-    }   catch (err) {
-        res.status(500).send(err)
-    }
+export async function onboardUser(req, res) {
+  try {
+    console.log('[onboardUser] Body:', req.body)
+
+    const user = await getUserFromToken(req)
+    if (!user) return res.status(401).json({ error: 'Unauthenticated' })
+
+    console.log('[onboardUser] Authenticated user:', user.id)
+
+    const { name, companyName, siteName } = req.body
+
+    // Company
+    const { data: company, error: companyError } = await supabase
+      .from('companies')
+      .insert({ company_name: companyName })
+      .select()
+      .single()
+    if (companyError) throw companyError
+
+    console.log('[onboardUser] Created company:', company.id)
+
+    // Site
+    const { data: site, error: siteError } = await supabase
+      .from('sites')
+      .insert({ site_name: siteName, company_id: company.id })
+      .select()
+      .single()
+    if (siteError) throw siteError
+
+    console.log('[onboardUser] Created site:', site.id)
+
+    // Update user
+    const { error: updateError } = await supabase
+      .from('users')
+      .update({
+        full_name: name,
+        company_id: company.id,
+        site_id: site.id,
+        onboarded: true,
+      })
+      .eq('id', user.id)
+
+    if (updateError) throw updateError
+
+    console.log('[onboardUser] User updated')
+
+    return res.status(200).json({ message: 'Onboarding successful' })
+  } catch (err) {
+    console.error('[onboardUser] Error:', err)
+    return res.status(500).json({ error: err.message })
+  }
 }
 
-export const listUsers = (req, res) => {
+export async function checkOnboardingStatus(req, res) {
     try {
-        const resp = listItems()
-        res.status(200).json(resp)
+        const user = await getUserFromToken(req)
+        if (!user) return res.status(401).json({ error: 'Unauthenticated' })
 
-    } catch (err) {
-        res.status(500).send(err)
-    }
+            const existingUser = await getUserById(user.id)
+            return res.json({ onboarded: !!existingUser })
+} catch (err) {
+    console.error(err)
+    res.status(500).json({ error: err.message })
+}
 }
 
-export const editUser = (req, res) => {
-    try {
-        const resp = editItem(parseInt(req.params.id), req.body)
-        res.status(200).json(resp)
 
-    } catch (err) {
-        res.status(500).send(err)
-    }
-}
 
-export const addUser = (req, res) => {
-    try {
-        const resp = addItem(req.body)
-        res.status(200).json(resp)
-        
-    } catch (err) {
-        res.status(500).send(err)
-    }
-}
-
-export const deleteUser = (req, res) => {
-    try {
-        const resp = deleteItem(parseInt(req.params.id))
-        res.status(200).json(resp)
-
-    } catch (err) {
-        res.status(500).send(err)
-    }
-}

@@ -1,10 +1,12 @@
 // /client/src/auth/SignupForm.jsx
 import { useState } from 'react'
-import { supabase } from '@/lib/supabaseClient'
+import { supabase } from '../lib/supabaseClient'
 
 export default function SignupForm() {
+
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+
   const [error, setError] = useState('')
   const [success, setSuccess] = useState('')
 
@@ -16,6 +18,8 @@ export default function SignupForm() {
     const { data, error } = await supabase.auth.signUp({
       email,
       password,
+
+
     })
 
     if (error) {
@@ -25,10 +29,12 @@ export default function SignupForm() {
     }
   }
 
-  //test 2
+
   return (
     <form onSubmit={handleSignup} className="max-w-md mx-auto p-4 bg-white shadow rounded">
       <h2 className="text-xl font-semibold mb-4">Sign Up</h2>
+
+
       <input
         type="email"
         placeholder="Email"
