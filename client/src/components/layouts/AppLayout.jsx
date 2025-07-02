@@ -4,7 +4,7 @@ import AppFooter from '../../components/app_core/AppFooter';
 import TodayHeader from '../../components/app_core/TodayHeader';
 import DashboardHeader from '../dashboard/DashboardHeader';
 
-import "../../App.css"
+
 
 export default function AppLayout() {
   return (

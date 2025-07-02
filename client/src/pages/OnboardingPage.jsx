@@ -7,6 +7,7 @@ export default function OnboardingPage() {
   const [name, setName] = useState('')
   const [companyName, setCompanyName] = useState('')
   const [siteName, setSiteName] = useState('')
+  const [location, setLocation] = useState('')
   const [error, setError] = useState('')
   const navigate = useNavigate()
 
@@ -30,7 +31,7 @@ export default function OnboardingPage() {
           'Content-Type': 'application/json',
           Authorization: `Bearer ${session.access_token}`,
         },
-        body: JSON.stringify({ name, companyName, siteName }),
+        body: JSON.stringify({ name, companyName, siteName, location }),
       })
 
       const result = await res.json()
@@ -74,6 +75,14 @@ export default function OnboardingPage() {
           className="w-full mb-4 p-2 border border-gray-300 rounded"
           value={siteName}
           onChange={(e) => setSiteName(e.target.value)}
+          required
+        />
+        <input
+          type="text"
+          placeholder="Location of site"
+          className="w-full mb-4 p-2 border border-gray-300 rounded"
+          value={location}
+          onChange={(e) => setLocation(e.target.value)}
           required
         />
         <button

@@ -1,0 +1,56 @@
+.app-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background-color: #FFFFFF;
+  color: #1C1C1C;
+  border-bottom: 1px solid #607B7D;
+}
+
+.logo {
+  font-weight: bold;
+  font-size: 1.2rem;
+  color: #3A606E;
+}
+
+.site {
+  margin-left: 0.75rem;
+  color: #607B7D;
+}
+
+.right-section {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.weather {
+  color: #1C1C1C;
+}
+
+.profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #1C1C1C;
+}
+
+.avatar {
+  width: 32px;
+  height: 32px;
+  background-color: #3A606E;
+  border-radius: 50%;
+}
+
+.username {
+  font-size: 0.75rem;
+}
+
+.logout-button {
+  background: none;
+  border: 1px solid #607B7D;
+  padding: 0.25rem 0.5rem;
+  color: #1C1C1C;
+  cursor: pointer;
+}

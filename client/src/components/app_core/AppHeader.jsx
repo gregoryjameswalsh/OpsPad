@@ -2,8 +2,7 @@ import { useState, useEffect, use } from 'react'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import { supabase } from '../../lib/supabaseClient'
-import '../../App.css'
-
+import '../../styles/app-header.css'
 
 export default function AppHeader() {
 
@@ -43,7 +42,12 @@ export default function AppHeader() {
         fetchHeader()
     }, [])
 
-    console.log('Header Data:', headerData)
+    // Log the header data to console, on state change, for debugging
+
+    useEffect(() => {
+        console.log('Header Data:', headerData)
+    }, [headerData])
+
 
     // Get geolocation data
     useEffect(() => {
@@ -74,8 +78,6 @@ export default function AppHeader() {
     )
         .then(res => {
                 setWeather(res.data.current)
-                console.log(res.data)
-                console.log('Weather:',weather)
             })
         .catch(err => {
             console.error("Error fetching weather data: ", err);
@@ -93,30 +95,21 @@ export default function AppHeader() {
 
     const { siteName, location, userName } = headerData
 
-    console.log(headerData)
-
     const weatherIcon = weather?.condition?.icon
                     ?`https:${weather?.condition?.icon}`
                     : null
     const altText = weather?.condition?.text || "Weather Icon";
-
-  // Logout handler
-
-
-
 
     return (
         <nav className="app-header">
             <div className="logo">
                 <p>OpsPad</p>
             </div>
-            <div className="site-name">
+            <div className="site">
                 <p>{ siteName }, { location }</p>
             </div>
-            
-
             <div className="app-header-right">
-                <span className="weather-display">
+                <span className="weather">
                     {/* Render the <img> only once we know data is non null and condition.icon exists */}
                     {weatherIcon && (<img 
                                         src={weatherIcon} 
@@ -127,15 +120,18 @@ export default function AppHeader() {
                     {weather?.temp_c}°C
                 </span>
                 
-                
-                <i className="fa-solid fa-circle-user icons" />
-                <span className="username">{ userName }</span>
-                <button onClick={handleLogout} className="logout-btn">
+                <div className="profile">
+                    <div className="avatar">
+                        <i className="fa-solid fa-circle-user" />
+                    </div>
+                    <div className="username">
+                        { userName }
+                    </div>
+                </div>
+                <button className="logout-button" onClick={handleLogout}>
                     Log out
                 </button>
-       
             </div>
-
         </nav>
     )
 }

@@ -19,7 +19,7 @@ export async function onboardUser(req, res) {
 
     console.log('[onboardUser] Authenticated user:', user.id)
 
-    const { name, companyName, siteName } = req.body
+    const { name, companyName, siteName, location } = req.body
 
     // Company
     const { data: company, error: companyError } = await supabase
@@ -34,7 +34,7 @@ export async function onboardUser(req, res) {
     // Site
     const { data: site, error: siteError } = await supabase
       .from('sites')
-      .insert({ site_name: siteName, company_id: company.id })
+      .insert({ site_name: siteName, site_location: location, company_id: company.id })
       .select()
       .single()
     if (siteError) throw siteError

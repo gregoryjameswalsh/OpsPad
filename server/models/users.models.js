@@ -50,7 +50,7 @@ export async function createUser(user) {
 
 export async function onboardUser(req, res) {
     try {
-        const { name, companyName, siteName } = req.body
+        const { name, companyName, siteName, location } = req.body
 
         const user = await getUserFromToken(req)
         if (!user) return res.status(401).json({ error: 'Unauthenticated' })
@@ -78,7 +78,7 @@ export async function onboardUser(req, res) {
     // Create site
     const { data: site, error: siteError } = await supabase
       .from('sites')
-      .insert({ site_name: siteName, company_id: company.id })
+      .insert({ site_name: siteName, site_location: location, company_id: company.id })
       .select()
       .single()
     if (siteError) throw siteError
