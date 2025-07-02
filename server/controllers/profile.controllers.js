@@ -1,5 +1,5 @@
 // /server/controllers/profile.controller.js
-import supabase from '../db/supabaseClient.js'
+import { supabase } from '../db/supabaseClient.js'
 import { getUserFromToken } from '../models/users.models.js'
 
 export async function getProfile(req, res) {

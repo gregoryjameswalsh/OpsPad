@@ -1,75 +1,107 @@
-import { useState, useEffect } from 'react'
-import { supabase } from '../../lib/supabaseClient'
+import { useState, useEffect, use } from 'react'
+import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
-
+import { supabase } from '../../lib/supabaseClient'
 import '../../App.css'
 
 
-const AppHeader = () => {
+export default function AppHeader() {
 
-    const [coords, setCoords] = useState({ lat: null, lon: null });
-    const [error, setError] = useState(null);
-    const [data, setData] = useState(null);
+    const [headerData, setHeaderData] = useState(null)
+    const [coords, setCoords] = useState({ lat: null, lon: null })
+    const [weather, setWeather] =useState(null)
+    const [error, setError] = useState(null)
+    const navigate = useNavigate()
 
-// First effect: ask for permission to access geolocation
+    //Fetch the header information from the backend
+    useEffect(() => {
+
+        async function fetchHeader() {
+            const { data, error: sessionError } = await supabase.auth.getSession()
+            if (sessionError) {
+                console.error('Session error:', sessionError)
+                return
+        }
+
+        const token = data?.session?.access_token
+        if (!token) {
+            console.error('No active session')
+            return
+        }
+
+        try {
+            const res = await axios.get('/api/header-data', {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            })
+            setHeaderData(res.data)
+        } catch (err) {
+            console.error('Error fetching header data:', err)
+        }
+        }
+        fetchHeader()
+    }, [])
+
+    console.log('Header Data:', headerData)
+
+    // Get geolocation data
     useEffect(() => {
         if (!navigator.geolocation) {
             setError(new Error("Geolocation is not supported by this browser."));
-            return;
+            return
         }
-
         navigator.geolocation.getCurrentPosition(
-            (position) => {
+            ({ coords }) => {
                 setCoords({
-                    lat: position.coords.latitude,
-                    lon: position.coords.longitude,
-                });
+                    lat: coords.latitude,
+                    lon: coords.longitude,
+                })
             },
-            (geolocError) => {
-                setError(geolocError);
-            },
+            err => setError(err),
             { enableHighAccuracy: true,
               timeout: 5000, // 5 seconds timeout
               maximumAge: 60_000, // Cache the position for 1 minute
              }
-        );
-    }, []);
+        )
+    }, [])
 
-// Second effect: once we have the coordinates, fetch the weather data
-
-    useEffect(()    => {
-        if (coords.lat == null || coords.lon == null) {
-            // we don't have coordinates yet, so we can't fetch weather data
-            return;
-        }
-
-        // Build the "q" param as "lat, lon" (Weather API expects this format)
-        const query = `${coords.lat},${coords.lon}`;
-
-        // Fetch the weather data using axios
-        axios .get(`http://api.weatherapi.com/v1/current.json?key=bd87ea815f2449eb85c103309250406&q=${encodeURIComponent(
-            query
-        )}&aqi=no`)
-            .then(response => {
-                setData(response.data)
-                console.log(response.data)
+    // Once we have the geolocation data, fetch the weather data
+    useEffect(() => {
+        if (coords.lat == null) return
+        const query = `${coords.lat},${coords.lon}`
+        axios .get(`http://api.weatherapi.com/v1/current.json?key=bd87ea815f2449eb85c103309250406&q=${encodeURIComponent(query)}&aqi=no`
+    )
+        .then(res => {
+                setWeather(res.data.current)
+                console.log(res.data)
+                console.log('Weather:',weather)
             })
-        .catch(apiError => {
-            console.error("Error fetching weather data: ", error);
-            setError(apiError);
+        .catch(err => {
+            console.error("Error fetching weather data: ", err);
+            setError(err);
         })
-    }, [coords.lat, coords.lon]);
+    }, [coords])
 
-    const weatherIcon = data?.current?.condition?.icon
-                    ?`https:${data?.current?.condition?.icon}`
-                    : null;
-    const altText = data?.current?.condition?.text || "Weather Icon";
+    //Logout handler
+    const handleLogout = async () => {
+        await supabase.auth.signOut()
+        navigate('/login')
+    }
+
+    if (!headerData) return null
+
+    const { siteName, location, userName } = headerData
+
+    console.log(headerData)
+
+    const weatherIcon = weather?.condition?.icon
+                    ?`https:${weather?.condition?.icon}`
+                    : null
+    const altText = weather?.condition?.text || "Weather Icon";
 
   // Logout handler
-  const handleLogout = async () => {
-    await supabase.auth.signOut()
-    navigate('/login')
-  }
+
 
 
 
@@ -79,7 +111,7 @@ const AppHeader = () => {
                 <p>OpsPad</p>
             </div>
             <div className="site-name">
-                <p>Red Lion, Chipping Sodbury</p>
+                <p>{ siteName }, { location }</p>
             </div>
             
 
@@ -92,22 +124,19 @@ const AppHeader = () => {
                                         style={{ width: 32, height: 32, verticalAlign: 'middle' }}
                                         />
                     )}{' '}
-                    {data?.current?.temp_c}°C
+                    {weather?.temp_c}°C
                 </span>
                 
                 
-                <i className="fa-solid fa-circle-user icons"></i>
-
-                            <button onClick={handleLogout} className="logout-btn">
-          Log out
-        </button>
-
-
-                
+                <i className="fa-solid fa-circle-user icons" />
+                <span className="username">{ userName }</span>
+                <button onClick={handleLogout} className="logout-btn">
+                    Log out
+                </button>
+       
             </div>
 
         </nav>
     )
 }
 
-export default AppHeader

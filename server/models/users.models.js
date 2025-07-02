@@ -1,5 +1,5 @@
 // File: server/models/users.models.js
-import supabase from '../db/supabaseClient.js'
+import { supabase } from '../db/supabaseClient.js'
 
 export async function getUserFromToken(req) {
     const token = req.headers.authorization?.replace('Bearer ', '')

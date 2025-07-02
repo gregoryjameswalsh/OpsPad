@@ -11,6 +11,7 @@ import OnboardedRoute from './components/OnboardedRoute'
 import RouteGate from './components/RouteGate'
 import LandingLayout from './components/layouts/LandingLayout'
 import AppLayout from './components/layouts/AppLayout'
+import { from } from 'form-data'
 
 const SignupPage       = lazy(() => import('./pages/SignupPage'))
 const LoginPage        = lazy(() => import('./pages/LoginPage'))
@@ -21,6 +22,7 @@ const DashboardPage    = lazy(() => import('./pages/DashboardPage'))
 const ShiftNotesPage   = lazy(() => import('./pages/ShiftNotesPage'))
 const TaskListPage     = lazy(() => import('./pages/TaskListPage'))
 const NotFoundPage     = lazy(() => import('./pages/NotFoundPage'))
+
 
 function App() {
   return (

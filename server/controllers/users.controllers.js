@@ -1,6 +1,6 @@
 // File: server/controllers/users.controllers.js
 
-import supabase from '../db/supabaseClient.js'
+import { supabase} from '../db/supabaseClient.js'
 import {
     getUserFromToken,
     createCompany,
