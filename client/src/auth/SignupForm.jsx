@@ -1,6 +1,7 @@
 // /client/src/auth/SignupForm.jsx
 import { useState } from 'react'
 import { supabase } from '../lib/supabaseClient'
+import 'auth.css' from '../auth/auth.css
 
 export default function SignupForm() {
 
@@ -31,8 +32,9 @@ export default function SignupForm() {
 
 
   return (
-    <form onSubmit={handleSignup} className="max-w-md mx-auto p-4 bg-white shadow rounded">
-      <h2 className="text-xl font-semibold mb-4">Sign Up</h2>
+    <div className="signup-container">
+    <form onSubmit={handleSignup} className="signup-form">
+      <h2>Create an Account</h2>
 
 
       <input
@@ -61,5 +63,6 @@ export default function SignupForm() {
       {error && <p className="text-red-500 mt-2">{error}</p>}
       {success && <p className="text-green-600 mt-2">{success}</p>}
     </form>
+    </div>
   )
 }
