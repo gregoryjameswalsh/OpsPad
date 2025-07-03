@@ -38,6 +38,7 @@ function handleDelete(e) {
     e.preventDefault();
     if (window.confirm("Are you sure you want to delete this note? This cannot be undone."))
     {
+        console.log('[EditNoteModal] handleDelete:', note.id);
         onDelete(note.id)
     }
 }

@@ -23,6 +23,7 @@ export async function getProfile(req, res) {
     }
 
     return res.status(200).json({ profile })
+   
   } catch (err) {
     console.error('[getProfile] Unexpected error:', err)
     return res.status(500).json({ error: err.message })

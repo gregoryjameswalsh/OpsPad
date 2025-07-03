@@ -1,8 +1,4 @@
 import tasks_db from '../db/tasks_db.js'
-import { supabase } from '../db/supabaseClient.js'
-
-
-
 
 export const getItem = id => {
     try{

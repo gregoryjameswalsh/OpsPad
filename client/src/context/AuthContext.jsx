@@ -1,3 +1,8 @@
+// src/contexts/AuthContext.jsx
+
+// This code is to hold useful info such as 'user' and 'siteId'
+// in React Context so that the application can access it
+
 import { createContext, useContext, useEffect, useState } from 'react'
 import { supabase } from '../lib/supabaseClient'
 
@@ -7,6 +12,7 @@ export function AuthProvider({ children }) {
   const [user, setUser] = useState(null)                // Supabase auth user
   const [userProfile, setUserProfile] = useState(null)  // public.users profile
   const [loading, setLoading] = useState(true)
+  const [siteId, setSiteId] = useState(null)
 
   useEffect(() => {
     const init = async () => {
@@ -16,6 +22,8 @@ export function AuthProvider({ children }) {
 
       const currentUser = session?.user ?? null
       setUser(currentUser)
+      console.log(currentUser)
+
 
       if (currentUser) {
         const { data: profile, error: profileError } = await supabase
@@ -24,11 +32,14 @@ export function AuthProvider({ children }) {
           .eq('id', currentUser.id)
           .maybeSingle()
 
+          
         if (profileError) {
           console.error('Error loading user profile:', profileError)
         }
 
         setUserProfile(profile)
+        setSiteId(profile.site_id)
+        console.log('Site ID:',siteId)
       }
 
       setLoading(false)

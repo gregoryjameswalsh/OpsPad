@@ -6,6 +6,7 @@ import { supabase } from '../lib/supabaseClient'
 export default function LoginForm() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [site_id, setSiteId] = useState('')
   const [error, setError] = useState('')
   const navigate = useNavigate()
 
@@ -25,6 +26,18 @@ const handleLogin = async (e) => {
       setError(loginError?.message || 'Login failed')
       return
     }
+
+    const res = await fetch('/api/profile', {
+      headers: {
+        Authorization: `Bearer ${data.session.access_token}`,
+      }
+    })
+   
+    const { profile } = await res.json()
+
+    // Store UUID & Site / Company UUID in session
+    sessionStorage.setItem('user_id', profile.id)
+    sessionStorage.setItem('site_id', profile.site_id)
 
     navigate('/gate')
 

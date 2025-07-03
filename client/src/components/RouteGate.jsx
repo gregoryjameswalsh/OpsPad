@@ -1,7 +1,7 @@
 // /components/RouteGate.jsx
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { useAuth } from '../context/AuthProvider'
+import { useAuth } from '../context/AuthContext'
 
 export default function RouteGate() {
   const { user, userProfile, loading } = useAuth()

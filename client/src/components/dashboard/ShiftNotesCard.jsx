@@ -5,12 +5,14 @@ import '../../App.css'
 import EditNoteModal from '../modals/EditNoteModal'
 import NewNoteModal from '../modals/NewNoteModal'
 import NoteList from '../notes/NoteList'
-import { useNotes } from '../../hooks/useNotes'
+import { useShiftNotes } from '../../hooks/useNotes'
 
 
 export default function ShiftNotesCard() {
 
-    const { notes, addNote, editNote, removeNote } = useNotes()
+   const siteId = sessionStorage.getItem('site_id')
+
+    const { notes, addNote, editNote, removeNote, setAsDeleted } = useShiftNotes(siteId)
     const [selectedNote, setSelectedNote] = useState(null)
     const [newNoteText, setNewNoteText] = useState('')
     const [newNoteInitialText, setNewNoteInitialText] = useState('')
@@ -24,7 +26,8 @@ export default function ShiftNotesCard() {
       setIsModalOpen(true)
     }
 
-
+    console.log(notes)
+    
   return (
 
      <div className="notes-section">
@@ -66,7 +69,9 @@ export default function ShiftNotesCard() {
                 setSelectedNote(null)
               }}
               onDelete={(id) => {
-                removeNote(id)
+                //removeNote(id)
+                console.log('[ShiftNotesCard] onDelete received id:', id);
+                setAsDeleted(id)
                 setIsModalOpen(false)
                 setSelectedNote(null)
               }}

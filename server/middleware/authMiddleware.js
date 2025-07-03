@@ -47,6 +47,8 @@ export async function verifyToken(req, res, next) {
     }
 
     req.user = data.user;
+
+
     return next();
 } catch (err) {
     console.error('[Auth] Unexpected error:', err);

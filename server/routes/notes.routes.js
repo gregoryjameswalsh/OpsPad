@@ -2,24 +2,22 @@
 
 import express from 'express';
 import {
-    listNotes,
-    getNote,
     editNote,
     addNote,
+    setAsDeleted,
     deleteNote,
+    getShiftNoteById,
+    getShiftNotesBySite,
 } from "../controllers/notes.controllers.js";
 
 const router = express.Router();
 
-router.get('/', listNotes);
-
-router.get('/:id', getNote);
-
-router.put('/:id', editNote);
-
-router.post('/', addNote);
-
-router.delete('/:id', deleteNote);
+router.get('/site/:siteId', getShiftNotesBySite)
+router.get('/:id', getShiftNoteById)
+router.post('/', addNote)
+router.put('/:id', editNote)
+router.patch('/:id', setAsDeleted)
+router.delete('/:id', deleteNote)
 
 export default router;
 // This file defines the routes for the pets API, including listing, getting, editing, adding, and deleting pets.

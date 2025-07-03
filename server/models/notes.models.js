@@ -1,40 +1,120 @@
 import shift_notes_db from '../db/shift_notes_db.js'
+import { supabase } from '../db/supabaseClient.js'
 
-export const getItem = id => {
-    try{
-        const note=shift_notes_db?.notes?.filter( notes => note?.id === id) [0]
-        return note
+export const getItem = async (id) => {
+  try {
+    const { data: note, error } = await supabase
+      .from('shift_notes')
+      .select('*')
+      .eq('id', id)
+      .single()
 
+    if (error) {
+      console.error(`Supabase error fetching note ${id}:`, error)
+      return null
+    }
+
+    return note
+  } catch (err) {
+    console.error(`Unexpected error in getItem(${id}):`, err)
+    return null
+  }
+}
+
+export const getSiteNotes = async (
+    siteId,
+    {
+        fromDate,
+        toDate,
+        limit = 50,
+        offset = 0
+    } = {}
+) => {
+    try {
+    let q = supabase
+        .from('shift_notes')
+        .select('*')
+        .eq('site_id', siteId)
+        .eq('is_deleted', false)
+        .order('created_at', { ascending: false })
+        .range(offset, offset + limit -1)
+
+        if (fromDate) {
+            q = q.gte('created_at', new Date(fromDate).toISOString())
+        }
+        if (toDate) {
+            q = q.lte('created_at', new Date(toDate).toISOString())
+        }
+
+        const { data, error } = await q
+
+        if (error) {
+            console.error(`Error fetching notes for site ${siteId}:`, error)
+            return []
+        }
+        return data
     } catch (err) {
-        console.log('Error', err)
+        console.error(`Unexpected error in getSiteNotes:`, err)
+        return []
     }
 }
 
+// I think this needs to / can be removed?
+
 export const listItems = () => {
+/*
     try {
         return shift_notes_db?.notes
 
     } catch (err) {
         console.log('Error', err)
     }
+*/
 }
 
-export const editItem = (id, data) => {
-    try {
-        const index = shift_notes_db.notes.findIndex(note => note.id === id)
+export async function editItem(id, data) {
+    const { data: updatedNote, error } = await supabase
+    .from('shift_notes')
+    .update({
+        note_text:  data.notes,
+        tag: data.noteTag,
+        
+        updated_at: new Date().toISOString(),
+    })
+    .eq('id', id)
+    .select()
+    .single()
 
-        if (index === -1) throw new Error('note not found')
-            else {
-        shift_notes_db.notes[index] = data
-        return shift_notes_db.notes[index]
-            }
-        } catch (err) {
-            console.log('Error', err)
-
-        }
+    if (error) {
+        console.error('Supabase edit error:', error)
+        throw error
     }
+    return updatedNote
+}
+
+export async function setItemAsDeleted(id) {
+    console.log('[setItemAsDeleted] supabase will update id=', id);
+    const { data: updatedNote, error } = await supabase
+    .from('shift_notes')
+    .update({
+        is_deleted: true,
+        deleted_at: new Date().toISOString(),
+        updated_at: new Date().toISOString(),
+    })
+    .eq('id', id)
+    .select()
+    .single()
+
+    if (error) {
+        console.error('Supabase edit error:', error)
+        throw error
+    }
+    console.debug('[setItemAsDeleted] deletedRow=', updatedNote)
+    return updatedNote
+}
 
 
+// This needs refactoring for Supabase
 export const addItem = data => {
     try {
         const newnote = { id: shift_notes_db.notes.length + 1, ...data }
@@ -45,6 +125,26 @@ export const addItem = data => {
     }
 }
 
+export async function deleteItem(id) {
+    console.debug('[deleteItem] deleting note', id)
+
+    const { data: deletedNote, error } = await supabase
+    .from('shift_notes')
+    .delete()
+    .eq('id', id)
+    .select()
+    .single()
+
+    if (error) {
+        console.error('[deleteItem] Supabase error:', error)
+        throw error
+    }
+    if (!deletedNote) {
+        return null
+    }
+}
+
+/* This needs refactoring for Supabase
 export const deleteItem = id => {
     try {
         // delete note from db
@@ -57,4 +157,4 @@ export const deleteItem = id => {
     } catch (error) {
     }
 
-}
+}*/
