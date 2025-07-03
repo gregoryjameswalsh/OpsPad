@@ -3,13 +3,13 @@ import { useState } from 'react';
 import '../../App.css'
 
 export default function NewNoteModal({ onSave, onClose, initialText }) {
-    const [noteText, setNoteText] = useState(initialText ||'')
+    const [noteTitle, setNoteTitle] = useState(initialText ||'')
     const [tag, setTag] = useState('')
 
     const handleSave = () => {
-        if (!noteText.trim() || !tag) return;
+        if (!noteTitle.trim() || !tag) return;
         const newNote = {
-            notes: noteText.trim(),
+            noteTitle: noteTitle.trim(),
             noteTag: tag,
             createdAt: new Date().toISOString(),
         }
@@ -23,7 +23,7 @@ return(
             <h3>New Note</h3>
 
             <div className="noteTag">
-                <div>{noteText}</div>
+                <div>{noteTitle}</div>
                 <label>Select a tag:</label> 
                 <select value={tag} onChange={(e) => setTag(e.target.value)}>
                     <option value="">--Select--</option>
@@ -35,7 +35,7 @@ return(
                 </select>
             </div>
             <div className="modal-footer">
-                <button className="save-button" onClick={handleSave} disabled={!noteText.trim() || !tag}>
+                <button className="save-button" onClick={handleSave} disabled={!noteTitle.trim() || !tag}>
                     Save
                 </button>
                 <button className="cancel-button" onClick={onClose}>Cancel</button>

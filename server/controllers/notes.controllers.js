@@ -67,6 +67,17 @@ export const listNotes = (req, res) => {
     }
 }
 
+export const addNote = async (req, res) => {
+    try {
+        console.log('[addNote] 🔔 received body =', req.body)
+        const newNote = await addItem(req.body)
+        return res.status(201).json(newNote)
+    } catch (err) {
+        console.error('[addNote] error:', err)
+        return res.status(500).json({ error: err.message || 'Server error' })
+    }
+}
+
 export const editNote = async (req, res) => {
     const id = req.params.id
     const body = req.body
@@ -97,15 +108,7 @@ export const setAsDeleted = async (req, res) => {
 
 
 
-export const addNote = (req, res) => {
-    try {
-        const resp = addItem(req.body)
-        res.status(200).json(resp)
-        
-    } catch (err) {
-        res.status(500).send(err)
-    }
-}
+
 
 export const deleteNote = async (req, res) => {
     const id = req.params.id

@@ -3,8 +3,11 @@ import { fetchNotesBySite, createNote, updateNote, deleteNoteById } from '../api
 
 const API = import.meta.env.VITE_API_BASE
 
-export function useShiftNotes(siteId, { fromDate, toDate, limit, offset } = {}) {
+export function useShiftNotes( { fromDate, toDate, limit, offset } = {}) {
     const [notes, setNotes] = useState([])
+
+    const siteId = sessionStorage.getItem('site_id');
+    const userId = sessionStorage.getItem('user_id'); 
 
     const fetchNotes = useCallback(() => {
     if (!siteId) return Promise.resolve();
@@ -27,9 +30,24 @@ export function useShiftNotes(siteId, { fromDate, toDate, limit, offset } = {}) 
 
 // **!!****!!***!!***!!***!!***!!***!!***!!***!!***!!***!!***!!***!!***!!***
 // This needs refactoring as currently old json pulling code    
-    const addNote = async (newNote) => {
-        const res = await createNote(newNote)
-        setNotes((prev) => [...prev, res.data])
+    const addNote = async (noteData) => {
+        const payload = { ...noteData, siteId, userId }
+        console.log('[useShiftNotes] POST /api/shift-notes →', payload)
+
+        const res = await fetch(`${API}/api/shift-notes`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload),
+        })
+        if (!res.ok) {
+            const text = await res.text()
+            console.error('[useShiftNotes] addNote failed:', res.status, text)
+            throw new Error(`Failed to add note (${res.status})`)
+        }
+        const created = await res.json()
+        //prepend to state so newest is on top
+        setNotes(ns => [created, ...ns])
+        return created
     }
 // End of code needing refactoring
 // **!!****!!***!!***!!***!!***!!***!!***!!***!!***!!***!!***!!***!!***!!***

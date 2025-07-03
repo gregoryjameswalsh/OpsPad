@@ -1,6 +1,7 @@
 import shift_notes_db from '../db/shift_notes_db.js'
 import { supabase } from '../db/supabaseClient.js'
 
+/* Is getItem ACTUALLY used? */
 export const getItem = async (id) => {
   try {
     const { data: note, error } = await supabase
@@ -21,6 +22,7 @@ export const getItem = async (id) => {
   }
 }
 
+// Function to get all (non deleted) notes for a site
 export const getSiteNotes = async (
     siteId,
     {
@@ -60,7 +62,6 @@ export const getSiteNotes = async (
 }
 
 // I think this needs to / can be removed?
-
 export const listItems = () => {
 /*
     try {
@@ -71,6 +72,36 @@ export const listItems = () => {
     }
 */
 }
+
+
+export async function addItem(data) {
+    console.log('[addItem] inserting note for site', data.siteId, 'at', new Date().toISOString())
+
+    const payload = {
+        note_title: data.noteTitle,
+        tag:        data.noteTag,
+        user_id:    data.userId,
+        site_id:    data.siteId,
+        created_at: new Date().toISOString(),
+        updated_at: new Date().toISOString(), 
+    }
+
+    const { data: newNote, error } = await supabase
+        .from('shift_notes')
+        .insert(payload)
+        .select('*')
+        .single()
+
+    if (error) {
+        console.error('[addItem] Supabase insert error:', error)
+        throw error
+    }
+
+    console.debug('[addItem] inserted row =', newNote)
+    return newNote
+}
+
+
 
 export async function editItem(id, data) {
     const { data: updatedNote, error } = await supabase
@@ -114,16 +145,7 @@ export async function setItemAsDeleted(id) {
 }
 
 
-// This needs refactoring for Supabase
-export const addItem = data => {
-    try {
-        const newnote = { id: shift_notes_db.notes.length + 1, ...data }
-        shift_notes_db.notes.push(newnote)
-        return newnote
-    } catch (err) {
-        console.log('Error', err)
-    }
-}
+
 
 export async function deleteItem(id) {
     console.debug('[deleteItem] deleting note', id)
