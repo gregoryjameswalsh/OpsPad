@@ -1,10 +1,36 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { fetchTasks, createTask, updateTask, deleteTaskById } from '../api/TasksApi'
 import NewTaskModal from '../components/modals/NewTaskModal'
+
+const API = import.meta.env.VITE_API_BASE
 
 export function useTasks() {
     const [tasks, setTasks] = useState([])
 
+    const siteId = sessionStorage.getItem('site_id');
+    const userId = sessionStorage.getItem('user_id'); 
+
+    const fetchTasks = useCallback(() => {
+        if (!siteId) return Promise.resolve();
+
+        return fetch(`${API}/api/tasks/site/${siteId}`)
+            .then(res => {
+            if (!res.ok) throw new Error(`Failed to load tasks (${res.status})`);
+        return res.json();
+      })
+        .then(data => setTasks(data))
+        .catch(err => {
+        console.error('[useTasks] fetchTasks error', err);
+        setNotes([]);
+      });
+    }, [siteId]);
+
+
+// *** REST OF CODE BELOW NEEDS REFACTORING STILL FOR SUPABASE *** \\
+
+
+
+// *** Start of the hooks 
     useEffect(() => {
         fetchTasks()
         .then((res) => {
