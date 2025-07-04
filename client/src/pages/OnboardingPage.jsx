@@ -82,6 +82,7 @@ export default function OnboardingPage() {
           onChange={(e) => setSiteName(e.target.value)}
           required
         />
+        
         <label>Location</label>
         <input
           type="text"
