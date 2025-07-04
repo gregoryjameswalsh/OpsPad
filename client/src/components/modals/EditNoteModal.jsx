@@ -1,22 +1,21 @@
 import React, { useState, useEffect } from 'react'
 
 
-import '../../App.css'
-
-
 function EditNoteModal({ note, onSave, onDelete, onClose }) {
 //copy the passed-in note to local state so we can edit it in a controlled input
     const [formState, setFormState] = useState({
         id: note.id,
+        noteTitle: note.noteTitle,
         noteTag: note.noteTag,
         createdAt: note.createdAt,
         notes: note.notes,
     })
 
-// failsafe - is the parent ever changes which 'note' is selected, make sure formState is updated accordingly
+// failsafe - if the parent ever changes which 'note' is selected, make sure formState is updated accordingly
     useEffect(() => {
         setFormState({
             id: note.id,
+            noteTitle: note.noteTitle,
             noteTag: note.noteTag,
             createdAt: note.createdAt,
             notes: note.notes,
@@ -44,14 +43,6 @@ function handleDelete(e) {
 }
 
 
-
-
-
-
-
-
-
-
 return (
     
     <div className="modal-overlay">
@@ -64,6 +55,19 @@ return (
             </header>
 
             <form className="modal-form" onSubmit={handleSave}>
+                <label>
+                    <textarea
+                        name="noteTitle"
+                        placeholder={note.noteTitle}
+                        value={formState.noteTitle}
+                        onChange={handleChange}
+                        required
+                        >
+
+                    </textarea>
+                </label>
+                
+                
                 <label>
                     Tag:
                     <select
@@ -87,7 +91,7 @@ return (
                         value={formState.notes}
                         onChange={handleChange}
                         rows={4}
-                        required
+                        
                         />
                 </label>
 

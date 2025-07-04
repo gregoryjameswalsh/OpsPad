@@ -2,6 +2,7 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { supabase } from '../lib/supabaseClient'
+import '../auth/auth.css'
 
 export default function OnboardingPage() {
   const [name, setName] = useState('')
@@ -50,9 +51,11 @@ export default function OnboardingPage() {
   }
 
   return (
-    <div className="max-w-md mx-auto p-6 mt-10 bg-white shadow rounded">
-      <h2 className="text-2xl font-semibold mb-6 text-[#1C1C1C]">Let’s set up your business</h2>
-      <form onSubmit={handleSubmit}>
+    <div className="signup-container">
+     
+      <form onSubmit={handleSubmit} className="signup-form">
+         <h2>Let’s set up your business</h2>
+         <label>Full Name</label>
         <input
           type="text"
           placeholder="Your Name"
@@ -61,6 +64,7 @@ export default function OnboardingPage() {
           onChange={(e) => setName(e.target.value)}
           required
         />
+        <label>Business Name</label>
         <input
           type="text"
           placeholder="Business Name"
@@ -69,6 +73,7 @@ export default function OnboardingPage() {
           onChange={(e) => setCompanyName(e.target.value)}
           required
         />
+        <label>Site or Outlet Name</label>
         <input
           type="text"
           placeholder="Primary Site Name"
@@ -77,6 +82,7 @@ export default function OnboardingPage() {
           onChange={(e) => setSiteName(e.target.value)}
           required
         />
+        <label>Location</label>
         <input
           type="text"
           placeholder="Location of site"
@@ -87,7 +93,7 @@ export default function OnboardingPage() {
         />
         <button
           type="submit"
-          className="w-full py-2 bg-[#3A606E] text-white rounded hover:opacity-90"
+          
         >
           Complete Setup
         </button>

@@ -2,6 +2,7 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { supabase } from '../lib/supabaseClient'
+import '../auth/auth.css'
 
 export default function LoginForm() {
   const [email, setEmail] = useState('')
@@ -49,8 +50,10 @@ const handleLogin = async (e) => {
 }
 
   return (
-    <form onSubmit={handleLogin} className="max-w-md mx-auto p-4 bg-white shadow rounded">
-      <h2 className="text-xl font-semibold mb-4">Log In</h2>
+    <div className="signup-container">
+    <form onSubmit={handleLogin} className="signup-form">
+      <h2>Log In</h2>
+      <label>Email Address</label>
       <input
         type="email"
         placeholder="Email"
@@ -59,6 +62,7 @@ const handleLogin = async (e) => {
         onChange={(e) => setEmail(e.target.value)}
         required
       />
+      <label>Password</label>
       <input
         type="password"
         placeholder="Password"
@@ -76,5 +80,6 @@ const handleLogin = async (e) => {
 
       {error && <p className="text-red-500 mt-2">{error}</p>}
     </form>
+    </div>
   )
 }

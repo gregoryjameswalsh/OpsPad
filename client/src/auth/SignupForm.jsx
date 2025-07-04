@@ -1,7 +1,7 @@
 // /client/src/auth/SignupForm.jsx
 import { useState } from 'react'
 import { supabase } from '../lib/supabaseClient'
-import 'auth.css' from '../auth/auth.css
+import '../auth/auth.css'
 
 export default function SignupForm() {
 
@@ -35,33 +35,34 @@ export default function SignupForm() {
     <div className="signup-container">
     <form onSubmit={handleSignup} className="signup-form">
       <h2>Create an Account</h2>
+      
+      {error && <p className="error-msg">{error}</p>}
+      {success && <div className="success-msg">Account created! Check your inbox to confirm.</div>}
 
-
+      <label>Email Address</label>
       <input
         type="email"
         placeholder="Email"
-        className="w-full mb-3 p-2 border border-gray-300 rounded"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
         required
       />
+
+      <label>Password</label>
       <input
         type="password"
         placeholder="Password"
-        className="w-full mb-3 p-2 border border-gray-300 rounded"
         value={password}
         onChange={(e) => setPassword(e.target.value)}
         required
       />
       <button
         type="submit"
-        className="w-full py-2 bg-[#3A606E] text-white rounded hover:opacity-90"
       >
         Sign Up
       </button>
 
-      {error && <p className="text-red-500 mt-2">{error}</p>}
-      {success && <p className="text-green-600 mt-2">{success}</p>}
+
     </form>
     </div>
   )
