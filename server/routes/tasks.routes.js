@@ -2,23 +2,22 @@
 
 import express from 'express';
 import {
-    listTasks,
-    getTask,
+    getTasksBySite,
+    getTaskById,
     editTask,
     addTask,
+    setTaskAsDeleted,
     deleteTask,
 } from "../controllers/tasks.controllers.js";
 
 const router = express.Router();
 
-router.get('/', listTasks);
-
-router.get('/:id', getTask);
-
-router.put('/:id', editTask);
-
+router.get('/site/:siteId', getTasksBySite)
+//router.get('/', listTasks);       *** Do I need to create a route for ALL tasks at some point?
+router.get('/:id', getTaskById);
 router.post('/', addTask);
-
+router.put('/:id', editTask);
+router.patch('/:id', setTaskAsDeleted)
 router.delete('/:id', deleteTask);
 
 export default router;
